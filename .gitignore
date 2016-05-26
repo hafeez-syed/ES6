@@ -1,5 +1,8 @@
+#Jetbrains IDE project config
+.idea/
+
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 
@@ -23,8 +26,10 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directory
-node_modules
+# Dependency directory NODE and BOWER
+node_modules/
+bower_components/
+
 
 # Optional npm cache directory
 .npm
