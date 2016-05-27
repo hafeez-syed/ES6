@@ -33,6 +33,7 @@
     "gulp-sourcemaps": "1.6.0",
     "gulp-svgmin": "1.2.2",
     "gulp-uglify": "1.5.3",
+    "jquery": "^2.2.4",
     "jshint": "^2.9.2",
     "lazypipe": "1.0.1",
     "lodash": "4.13.1",
