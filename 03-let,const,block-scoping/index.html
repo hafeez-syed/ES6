@@ -3,14 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>03 - let, const, block scoping</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/customized.css">
 </head>
-<body>
-    <div class="container">
-        <div class="span0"><a href="/">Go back</a></div>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="/">Go back</a>
+                </div>
+                <div class="col-md-9">
+                    <h1 class="page-header">03 - let, const, block scoping</h1>
 
-        <h2>03 - let, const, block scoping</h2>
-    </div>
+                    <!-- Code Block -->
+                    <h3>1. var</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+                                    console.log(productId, 'var');
+                                    var productId = 12;
+                                </code>
+                            </pre>
+                            <pre id="var" class="transparent"></pre>
+                        </figure>
+                    </div>
 
-<script src="js/"></script>
-</body>
+                    <!-- Code Block -->
+                    <h3>2. let</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+                                    console.log(pId, 'let');
+                                    let pId = 12;
+                                </code>
+                            </pre>
+                            <pre id="let" class="transparent"></pre>
+                        </figure>
+                    </div>
+
+
+                    <!-- Code Block -->
+                    <h3>3. block scoping</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+
+                                </code>
+                            </pre>
+                            <pre id="block" class="transparent"></pre>
+                        </figure>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../js/customized.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
