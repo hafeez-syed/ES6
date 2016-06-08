@@ -4,6 +4,7 @@
   "description": "Javascript ES6",
   "main": "index.js",
   "devDependencies": {
+    "babel-polyfill": "^6.9.1",
     "bootstrap": "^3.3.6",
     "graceful-fs": "^4.1.4",
     "gulp": "3.9.1",
