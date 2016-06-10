@@ -16,15 +16,13 @@
                 <div class="col-md-9">
                     <h1 class="page-header">03 - let, const, block scoping</h1>
 
-                    <textarea name="additional-notes" class="additional-notes"></textarea>
-
                     <!-- Code Block -->
                     <h3>1. var</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
-                                    console.log(productId, 'var');
+                                    console.log(productId);
                                     var productId = 12;
                                 </code>
                             </pre>
@@ -32,45 +30,118 @@
                         </figure>
                     </div>
 
+                    <hr />
+
                     <!-- Code Block -->
                     <h3>2. let</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
-                                    console.log(pId, 'let');
+                                    console.log(pId);
                                     let pId = 12;
                                 </code>
                             </pre>
-                            <pre id="let" class="transparent"></pre>
+                            <pre id="let" class="transparent">=> Uncaught ReferenceError: pId is not defined (uncomment the code to see in the error in console.)</pre>
                         </figure>
                     </div>
 
+                    <hr />
 
                     <!-- Code Block -->
-                    <h3>3. block scoping</h3>
+                    <h3>3a. block scoping</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
-                                    let pId = 2;
+                                    let pId = 12;
                                     {
-                                        let pId = 3;
+                                        let pId = 2000;
                                     }
-                                    console.log(pId, 'block');
+                                    console.log(pId);
                                 </code>
                             </pre>
-                            <pre id="block" class="transparent"></pre>
+                            <pre id="block1" class="transparent"></pre>
                         </figure>
                     </div>
 
+                    <hr />
+
+                    <!-- Code Block -->
+                    <h3>3b. block scoping</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+                                    function updateProductId() {
+                                        memberId = 15;
+                                    }
+
+                                    let memberId = null;
+                                    updateProductId();
+                                    console.log(memberId);
+                                </code>
+                            </pre>
+                            <pre id="block2" class="transparent"></pre>
+                        </figure>
+                    </div>
+
+                    <hr />
+
+                    <!-- Code Block -->
+                    <h3>3c. block scoping</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+                                    let userId = 42;
+                                    for (let userId = 0; userId < 10; userId++) {
+                                    }
+                                    console.log(userId);
+                                </code>
+                            </pre>
+                            <pre id="block3" class="transparent"></pre>
+                        </figure>
+                    </div>
+
+                    <hr />
+
+                    <!-- Code Block -->
+                    <h3>3d. block scoping - "var" v "let"</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+
+                                    var updateFunctions = [];
+                                    for (var i=0; i < 2; i++) {
+                                        updateFunctions.push(function(){ return i;});
+                                    }
+
+                                    console.log(updateFunctions[0]());
+
+                                    _________________________________________________________
+
+                                    let updateFunctions = [];
+                                    for (let i=0; i < 2; i++) {
+                                        updateFunctions.push(function(){ return i;});
+                                    }
+
+                                    console.log(updateFunctions[0]());
+                                </code>
+                            </pre>
+                            <pre id="block4" class="transparent"></pre>
+                        </figure>
+                    </div>
                 </div>
             </div>
         </div>
 
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../node_modules/babel-polyfill/dist/polyfill.min.js"></script>
+        <script src="../node_modules/traceur/bin/traceur.js"></script>
+        <script src="../node_modules/traceur/bin/BrowserSystem.js"></script>
+        <script src="../node_modules/traceur/src/bootstrap.js"></script>
         <script src="../js/customized.js"></script>
         <script src="js/script.js"></script>
     </body>

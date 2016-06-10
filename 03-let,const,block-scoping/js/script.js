@@ -1,55 +1,56 @@
 'use strict';
-var cursorPosition = null,
-    typingInterval = 500,
-    InvalidCharFoundBetweenAWord = false,
-    typingTimer;
-$(".additional-notes").keyup(validateComments);
-$(".additional-notes").keydown(function(e) {
-    cursorPosition = this.selectionEnd;
-});
-function validateComments(e) {
-    var regExp = /[^A-Z0-9\.\s\r\n\'\"\@\$\!\(\)\-\,]+/igm,
-        val = $(this).val(),
-        limit = 500,
-        start = this.selectionStart,
-        end = this.selectionEnd;
 
-    var test  = regExp.test(this.value);
-    if(test) {
-        if(end < val.length) {
-            InvalidCharFoundBetweenAWord = true;
-        }
-    }
-    this.value = this.value.replace(regExp, '');
-    this.setSelectionRange(start, end);
-
-    clearTimeout(typingTimer);
-    typingTimer = setTimeout(doneTyping.call(this), typingInterval);
-}
-
-function doneTyping() {
-    if(InvalidCharFoundBetweenAWord) {
-        this.setSelectionRange(cursorPosition, cursorPosition);
-        InvalidCharFoundBetweenAWord = false;
-    }
-}
-
-console.log(productId, 'var');
+consoleAndDisplayResults(productId, 'var');
 var productId = 12;
 
 //*************//
 
-console.error(pId, 'let');
+//consoleAndDisplayResults(pId, 'let');
 let pId = 12;
 
 //*************//
 
+
 let id = 12;
 {
-    let id = 24;
+    let id = 2000;
 }
-console.log(id);
+consoleAndDisplayResults(id, 'block1');
 
 //*************//
+
+function updateProductId() {
+    memberId = 15;
+}
+
+let memberId = null;
+updateProductId();
+consoleAndDisplayResults(memberId, 'block2');
+
+//*************//
+
+let userId = 42;
+for (let userId = 0; userId < 10; userId++) {
+}
+consoleAndDisplayResults(userId, 'block3');
+
+//*************//
+
+var updateVarFunctions = [];
+for (var i=0; i < 2; i++) {
+    updateVarFunctions.push(function(){ return i;});
+}
+
+consoleAndDisplayResults(updateVarFunctions[0](), 'block4');
+
+consoleAndDisplayResults('\n_________________________________________________________\n\n', 'block4');
+
+let updateLetFunctions = [];
+for (let i=0; i < 2; i++) {
+    updateLetFunctions.push(function(){ return i;});
+}
+
+consoleAndDisplayResults(updateLetFunctions[0](), 'block4');
+
 
 
