@@ -19,15 +19,15 @@
                     <!-- Code Block -->
                     <h3>1. var</h3>
                     <div class="zero-clipboard">
-                        <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-                                    console.log(productId);
-                                    var productId = 12;
-                                </code>
-                            </pre>
-                            <pre id="var" class="transparent"></pre>
-                        </figure>
+                    <figure class="highlight">
+                        <pre>
+                            <code class="language-html">
+    console.log(productId);
+    var productId = 12;
+                            </code>
+                        </pre>
+                    <pre id="var" class="transparent"></pre>
+                    </figure>
                     </div>
 
                     <hr />
@@ -38,11 +38,11 @@
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
-                                    console.log(pId);
-                                    let pId = 12;
+    console.log(pId);
+    let pId = 12;
                                 </code>
                             </pre>
-                            <pre id="let" class="transparent">=> Uncaught ReferenceError: pId is not defined (uncomment the code to see in the error in console.)</pre>
+                            <pre id="let" class="transparent">=> Uncaught ReferenceError: pId is not defined (uncomment the code to see the error in console.)</pre>
                         </figure>
                     </div>
 
@@ -54,11 +54,11 @@
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
-                                    let pId = 12;
-                                    {
-                                        let pId = 2000;
-                                    }
-                                    console.log(pId);
+    let pId = 12;
+    {
+        let pId = 2000;
+    }
+    console.log(pId);
                                 </code>
                             </pre>
                             <pre id="block1" class="transparent"></pre>
@@ -73,13 +73,13 @@
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
-                                    function updateProductId() {
-                                        memberId = 15;
-                                    }
+    function updateProductId() {
+        memberId = 15;
+    }
 
-                                    let memberId = null;
-                                    updateProductId();
-                                    console.log(memberId);
+    let memberId = null;
+    updateProductId();
+    console.log(memberId);
                                 </code>
                             </pre>
                             <pre id="block2" class="transparent"></pre>
@@ -94,10 +94,10 @@
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
-                                    let userId = 42;
-                                    for (let userId = 0; userId < 10; userId++) {
-                                    }
-                                    console.log(userId);
+    let userId = 42;
+    for (let userId = 0; userId < 10; userId++) {
+    }
+    console.log(userId);
                                 </code>
                             </pre>
                             <pre id="block3" class="transparent"></pre>
@@ -112,27 +112,78 @@
                         <figure class="highlight">
                             <pre>
                                 <code class="language-html">
+    var updateFunctions = [];
+    for (var i=0; i < 2; i++) {
+        updateFunctions.push(function(){ return i;});
+    }
 
-                                    var updateFunctions = [];
-                                    for (var i=0; i < 2; i++) {
-                                        updateFunctions.push(function(){ return i;});
-                                    }
+    console.log(updateFunctions[0]());
 
-                                    console.log(updateFunctions[0]());
+    _________________________________________________________
 
-                                    _________________________________________________________
+    let updateFunctions = [];
+    for (let i=0; i < 2; i++) {
+        updateFunctions.push(function(){ return i;});
+    }
 
-                                    let updateFunctions = [];
-                                    for (let i=0; i < 2; i++) {
-                                        updateFunctions.push(function(){ return i;});
-                                    }
-
-                                    console.log(updateFunctions[0]());
+    console.log(updateFunctions[0]());
                                 </code>
                             </pre>
                             <pre id="block4" class="transparent"></pre>
                         </figure>
                     </div>
+
+                    <!-- Code Block -->
+                    <h3>3e. block scoping - const</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+    const MARKUP_PCT = 100;
+    console.log(MARKUP_PCT);
+    _________________________________________________________
+    const TOTAL_PRODUCTS;
+    console.log(TOTAL_PRODUCTS);
+    _________________________________________________________
+    MARKUP_PCT = 10;
+    console.log(MARKUP_PCT);
+    _________________________________________________________
+    const CHILD_AGE = 5;
+    if(CHILD_AGE > 0) {
+        const CHILD_AGE = 7;
+    }
+    console.log(CHILD_AGE);
+                                </code>
+                            </pre>
+                            <pre id="block5" class="transparent"></pre>
+                        </figure>
+                    </div>
+                    <!-- Code Block -->
+                    <h3>3f. Arrow Functions</h3>
+                    <div class="zero-clipboard">
+                        <figure class="highlight">
+                            <pre>
+                                <code class="language-html">
+    const MARKUP_PCT = 100;
+    console.log(MARKUP_PCT);
+    _________________________________________________________
+    const TOTAL_PRODUCTS;
+    console.log(TOTAL_PRODUCTS);
+    _________________________________________________________
+    MARKUP_PCT = 10;
+    console.log(MARKUP_PCT);
+    _________________________________________________________
+    const CHILD_AGE = 5;
+    if(CHILD_AGE > 0) {
+        const CHILD_AGE = 7;
+    }
+    console.log(CHILD_AGE);
+                                </code>
+                            </pre>
+                            <pre id="block5" class="transparent"></pre>
+                        </figure>
+                    </div>
+
                 </div>
             </div>
         </div>

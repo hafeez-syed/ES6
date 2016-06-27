@@ -6,3 +6,7 @@ hr {
     border-top: 1px solid #999;
     margin-top: 40px;
 }
+
+pre p {
+    color: #ff0000;
+}

@@ -52,5 +52,27 @@ for (let i=0; i < 2; i++) {
 
 consoleAndDisplayResults(updateLetFunctions[0](), 'block4');
 
+const MARKUP_PCT = 100;
+consoleAndDisplayResults(MARKUP_PCT, 'block5');
 
+consoleAndDisplayResults('\n_________________________________________________________\n\n', 'block5');
+
+//const TOTAL_PRODUCTS;
+//consoleAndDisplayResults(TOTAL_PRODUCTS, 'block5');
+
+consoleAndDisplayResults("=> Uncaught SyntaxError: Missing initializer in const declaration. (uncomment the code to see the error in console.)", 'block5');
+
+consoleAndDisplayResults('\n_________________________________________________________\n\n', 'block5');
+
+//MARKUP_PCT = 10;
+//consoleAndDisplayResults(MARKUP_PCT, 'block5');
+consoleAndDisplayResults("=> Uncaught TypeError: Assignment to constant variable. (uncomment the code to see the error in console.)", 'block5');
+
+consoleAndDisplayResults('\n_________________________________________________________\n\n', 'block5');
+
+const CHILD_AGE = 5;
+if(CHILD_AGE > 0) {
+    const CHILD_AGE = 7;
+}
+consoleAndDisplayResults(CHILD_AGE, 'block5');
 
