@@ -10,3 +10,8 @@ hr {
 pre p {
     color: #ff0000;
 }
+
+code[class*="language-"] {
+    font-size: 16px;
+    line-height: 2;
+}

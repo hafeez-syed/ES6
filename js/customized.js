@@ -1,9 +1,9 @@
 function consoleAndDisplayResults(val, div) {
     try {
         console.log(val);
-        $('#' + div).append('<p>' + val + '</p>');
+        $('#' + div).append('<code class="language-html"><p>' + val + '</code></p>');
     } catch (e) {
         console.log(e.message);
-        $('#' + div).append('<p>' + e.message + '</p>');
+        $('#' + div).append('<code class="language-html"><p>' + e.message + '</code></p>');
     }
 }

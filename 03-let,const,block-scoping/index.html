@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>03 - let, const, block scoping</title>
+<!--
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+-->
+    <link rel="stylesheet" href="../css/prism.css">
     <link rel="stylesheet" href="../css/customized.css">
 </head>
     <body>
@@ -17,13 +20,13 @@
                     <h1 class="page-header">03 - let, const, block scoping</h1>
 
                     <!-- Code Block -->
-                    <h3>1. var</h3>
+                    <h2>1. var</h2>
                     <div class="zero-clipboard">
                     <figure class="highlight">
-                        <pre>
-                            <code class="language-html">
-    console.log(productId);
-    var productId = 12;
+                        <pre class="line-numbers">
+                            <code class="language-js">
+                                console.log(productId);
+                                var productId = 12;
                             </code>
                         </pre>
                     <pre id="var" class="transparent"></pre>
@@ -33,13 +36,13 @@
                     <hr />
 
                     <!-- Code Block -->
-                    <h3>2. let</h3>
+                    <h2>2. let</h2>
                     <div class="zero-clipboard">
                         <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-    console.log(pId);
-    let pId = 12;
+                            <pre class="line-numbers">
+                                <code class="language-js">
+                                    console.log(pId);
+                                    let pId = 12;
                                 </code>
                             </pre>
                             <pre id="let" class="transparent">=> Uncaught ReferenceError: pId is not defined (uncomment the code to see the error in console.)</pre>
@@ -49,16 +52,17 @@
                     <hr />
 
                     <!-- Code Block -->
-                    <h3>3a. block scoping</h3>
+                    <h2>3 block scoping</h2>
+                    <h3>3a.</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-    let pId = 12;
-    {
-        let pId = 2000;
-    }
-    console.log(pId);
+                            <pre class="line-numbers">
+                                <code class="language-js">
+                                    let pId = 12;
+                                    {
+                                        let pId = 2000;
+                                    }
+                                    console.log(pId);
                                 </code>
                             </pre>
                             <pre id="block1" class="transparent"></pre>
@@ -68,18 +72,18 @@
                     <hr />
 
                     <!-- Code Block -->
-                    <h3>3b. block scoping</h3>
+                    <h3>3b.</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-    function updateProductId() {
-        memberId = 15;
-    }
+                            <pre class="line-numbers">
+                                <code class="language-js">
+                                    function updateProductId() {
+                                        memberId = 15;
+                                    }
 
-    let memberId = null;
-    updateProductId();
-    console.log(memberId);
+                                    let memberId = null;
+                                    updateProductId();
+                                    console.log(memberId);
                                 </code>
                             </pre>
                             <pre id="block2" class="transparent"></pre>
@@ -89,15 +93,15 @@
                     <hr />
 
                     <!-- Code Block -->
-                    <h3>3c. block scoping</h3>
+                    <h3>3c.</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-    let userId = 42;
-    for (let userId = 0; userId < 10; userId++) {
-    }
-    console.log(userId);
+                            <pre class="line-numbers">
+                                <code class="language-js">
+                                    let userId = 42;
+                                    for (let userId = 0; userId < 10; userId++) {
+                                    }
+                                    console.log(userId);
                                 </code>
                             </pre>
                             <pre id="block3" class="transparent"></pre>
@@ -110,23 +114,23 @@
                     <h3>3d. block scoping - "var" v "let"</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-    var updateFunctions = [];
-    for (var i=0; i < 2; i++) {
-        updateFunctions.push(function(){ return i;});
-    }
+                            <pre class="line-numbers">
+                                <code class="language-js">
+                                    var updateFunctions = [];
+                                    for (var i=0; i < 2; i++) {
+                                        updateFunctions.push(function(){ return i;});
+                                    }
 
-    console.log(updateFunctions[0]());
+                                    console.log(updateFunctions[0]());
 
-    _________________________________________________________
+                                    _________________________________________________________
 
-    let updateFunctions = [];
-    for (let i=0; i < 2; i++) {
-        updateFunctions.push(function(){ return i;});
-    }
+                                    let updateFunctions = [];
+                                    for (let i=0; i < 2; i++) {
+                                        updateFunctions.push(function(){ return i;});
+                                    }
 
-    console.log(updateFunctions[0]());
+                                    console.log(updateFunctions[0]());
                                 </code>
                             </pre>
                             <pre id="block4" class="transparent"></pre>
@@ -137,53 +141,49 @@
                     <h3>3e. block scoping - const</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-    const MARKUP_PCT = 100;
-    console.log(MARKUP_PCT);
-    _________________________________________________________
-    const TOTAL_PRODUCTS;
-    console.log(TOTAL_PRODUCTS);
-    _________________________________________________________
-    MARKUP_PCT = 10;
-    console.log(MARKUP_PCT);
-    _________________________________________________________
-    const CHILD_AGE = 5;
-    if(CHILD_AGE > 0) {
-        const CHILD_AGE = 7;
-    }
-    console.log(CHILD_AGE);
+                            <pre class="line-numbers">
+                                <code class="language-js">
+                                    const MARKUP_PCT = 100;
+                                    console.log(MARKUP_PCT);
+                                    _________________________________________________________
+                                    const TOTAL_PRODUCTS;
+                                    console.log(TOTAL_PRODUCTS);
+                                    _________________________________________________________
+                                    MARKUP_PCT = 10;
+                                    console.log(MARKUP_PCT);
+                                    _________________________________________________________
+                                    const CHILD_AGE = 5;
+                                    if(CHILD_AGE > 0) {
+                                        const CHILD_AGE = 7;
+                                    }
+                                    console.log(CHILD_AGE);
                                 </code>
                             </pre>
                             <pre id="block5" class="transparent"></pre>
                         </figure>
                     </div>
                     <!-- Code Block -->
-                    <h3>3f. Arrow Functions</h3>
+                    <h2>4 Arrow Functions</h2>
+                    <h3>3f.</h3>
                     <div class="zero-clipboard">
                         <figure class="highlight">
-                            <pre>
-                                <code class="language-html">
-    const MARKUP_PCT = 100;
-    console.log(MARKUP_PCT);
-    _________________________________________________________
-    const TOTAL_PRODUCTS;
-    console.log(TOTAL_PRODUCTS);
-    _________________________________________________________
-    MARKUP_PCT = 10;
-    console.log(MARKUP_PCT);
-    _________________________________________________________
-    const CHILD_AGE = 5;
-    if(CHILD_AGE > 0) {
-        const CHILD_AGE = 7;
-    }
-    console.log(CHILD_AGE);
+                            <pre class="line-numbers">
+                                <code class="language-js">
+                                    var getPrice = () => 5.99;
+                                    console.log(typeof getPrice);
+                                    _________________________________________________________
+                                    var getPrice = () => 5.99;
+                                    console.log(getPrice();
+
+                                    _________________________________________________________
+
+                                    _________________________________________________________
+
                                 </code>
                             </pre>
-                            <pre id="block5" class="transparent"></pre>
+                            <pre id="block6" class="transparent"></pre>
                         </figure>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -193,6 +193,7 @@
         <script src="../node_modules/traceur/bin/traceur.js"></script>
         <script src="../node_modules/traceur/bin/BrowserSystem.js"></script>
         <script src="../node_modules/traceur/src/bootstrap.js"></script>
+        <script src="../js/prism.js"></script>
         <script src="../js/customized.js"></script>
         <script src="js/script.js"></script>
     </body>

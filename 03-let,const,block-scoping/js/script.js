@@ -76,3 +76,9 @@ if(CHILD_AGE > 0) {
 }
 consoleAndDisplayResults(CHILD_AGE, 'block5');
 
+
+//*************//
+var getPrice = () => 5.99;
+consoleAndDisplayResults(typeof getPrice, 'block6');
+consoleAndDisplayResults('\n_________________________________________________________\n\n', 'block6');
+consoleAndDisplayResults(getPrice(), 'block6');
