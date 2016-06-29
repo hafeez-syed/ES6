@@ -7,8 +7,16 @@ hr {
     margin-top: 40px;
 }
 
+/*pre[class*="language-"] {
+    white-space: pre-line;
+}*/
+
 pre p {
     color: #ff0000;
+}
+
+pre.line-numbers {
+    padding-left: 0;
 }
 
 code[class*="language-"] {
