@@ -36,7 +36,7 @@
                         let pId = 12;
                     </code>
                 </pre>
-                <pre id="let" class="transparent">=> Uncaught ReferenceError: pId is not defined (uncomment the code to see the error in console.)</pre>
+                <pre id="let" class="transparent"></pre>
             </section>
 
             <hr />
@@ -46,7 +46,7 @@
             <h3>3a.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
-                    <code class="language-js">
+                    <code class="language-javascript">
                         let pId = 12;
                         {
                             let pId = 2000;
@@ -63,7 +63,7 @@
             <h3>3b.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
-                    <code class="language-js">
+                    <code class="language-javascript">
                         function updateProductId() {
                             memberId = 15;
                         }
@@ -82,7 +82,7 @@
             <h3>3c.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
-                    <code class="language-js">
+                    <code class="language-javascript">
                         let userId = 42;
                         for (let userId = 0; userId < 10; userId++) {
                         }
@@ -98,7 +98,7 @@
             <h3>3d. block scoping - "var" v "let"</h3>
             <section>
                 <pre class="line-numbers language-javascript">
-                    <code class="language-js">
+                    <code class="language-javascript">
                         var updateFunctions = [];
                         for (var i=0; i < 2; i++) {
                             updateFunctions.push(function(){ return i;});
@@ -123,7 +123,7 @@
             <h3>3e. block scoping - const</h3>
             <section>
                 <pre class="line-numbers language-javascript">
-                    <code class="language-js">
+                    <code class="language-javascript">
                         const MARKUP_PCT = 100;
                         console.log(MARKUP_PCT);
                         _________________________________________________________
@@ -142,25 +142,138 @@
                 </pre>
                 <pre id="block5" class="transparent"></pre>
             </section>
+
             <!-- Code Block -->
             <h2>4 Arrow Functions</h2>
-            <h3>3f.</h3>
+            <h3>4a.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
-                    <code class="language-js">
+                    <code class="language-javascript">
+                        // Empty parenthesis `()` when no input is supplied
                         var getPrice = () => 5.99;
                         console.log(typeof getPrice);
-                        _________________________________________________________
-                        var getPrice = () => 5.99;
-                        console.log(getPrice();
 
                         _________________________________________________________
+                        console.log(getPrice());
+
+                        _________________________________________________________
+                        // no parenthesis `()` when 1 input is supplied
+                        var getPrice = count => count * 4;
+                        console.log(getPrice(4));
+
+                        _________________________________________________________
+                        // 1. parenthesis `()` when 2 inputs are supplied.
+                        // 2. no curly braces if there is only 1 expression.
+                        var getPrice = (count, tax) => count * 4 * (1 + tax);
+                        console.log(getPrice(2, 0.07));
+
+                        _________________________________________________________
+                        // Curly braces OR block is used if there is more than 1 line expressions.
+                        var getPrice = (count, tax) => {
+                            var price = count * 4.00;
+                            price *= ( 1 + tax);
+                            return price;
+                        }
+                        console.log(getPrice(2, 0.07));
 
                         _________________________________________________________
 
                     </code>
                 </pre>
                 <pre id="block6" class="transparent"></pre>
+            </section>
+
+            <h3>4b.</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        // ES5 way will give `#document`
+                        document.addEventListener('click', function() {
+                            console.log(this);
+                        });
+                        _________________________________________________________
+                        // ES6 way will give `Window {...}` object
+                        document.addEventListener('click', () => console.log(this));
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block7" class="transparent"></pre>
+            </section>
+
+            <h3>4c.</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        // will give `{number: 123}`
+                        var invoice = {
+                            number: 123,
+                            process: function() {
+                                console.log(this);
+                            }
+                        };
+                        invoice.process();
+                        _________________________________________________________
+                        // will give `Window {...}` object
+                        var invoice = {
+                            number: 123,
+                            process: () => console.log(this);
+                        };
+                        invoice.process();
+
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block8" class="transparent"></pre>
+            </section>
+
+            <h3>4d.</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        var invoice = {
+                            number: 123,
+                            process: function() {
+                                return function() {
+                                    console.log(this.number);
+                                }
+                            }
+                        };
+                        invoice.process()();
+
+                        _________________________________________________________
+                        var invoice = {
+                            number: 123,
+                            process: function() {
+                                return () => console.log(this.number);
+                            }
+                        };
+                        invoice.process()();
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block9" class="transparent"></pre>
+            </section>
+
+            <h3>4e.</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        var invoice = {
+                            number: 123,
+                            process: function() {
+                                return () => console.log(this.number);
+                            }
+                        };
+                        var newInvoice = {
+                            number: 456
+                        }
+                        // You can't bind an object with an arrow function
+                        invoice.process().bind(newInvoice)();
+
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block10" class="transparent"></pre>
             </section>
         </div>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
