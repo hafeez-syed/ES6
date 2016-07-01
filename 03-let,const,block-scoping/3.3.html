@@ -2,150 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>03 - let, const, block scoping</title>
+    <title>03.03 - Arrow Functions</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/prism.css">
     <link rel="stylesheet" href="../css/customized.css">
 </head>
-    <section>
-        <section class="container">
-            <a href="/">Go back</a>
-            <h1 class="page-header">03 - let, const, block scoping</h1>
+        <div class="container">
+            <a href="/03-let,const,block-scoping/3.2.html"><< 3.2. Let, const, block scoping</a>
+            <h1 class="page-header">03.03 - Arrow Functions</h1>
 
             <!-- Code Block -->
-            <h2>1. var</h2>
-            <section>
-                <pre class="line-numbers language-javascript">
-                    <code class="language-javascript">
-                        console.log(productId);
-                        var productId = 12;
-                    </code>
-                </pre>
-                <pre id="var" class="transparent"></pre>
-            </section>
-
-            <hr />
-
-            <!-- Code Block -->
-            <h2>2. let</h2>
-            <section class="zero-clipboard">
-                <pre class="line-numbers language-javascript">
-                    <code class="language-javascript">
-                        console.log(pId);
-                        let pId = 12;
-                    </code>
-                </pre>
-                <pre id="let" class="transparent"></pre>
-            </section>
-
-            <hr />
-
-            <!-- Code Block -->
-            <h2>3 block scoping</h2>
-            <h3>3a.</h3>
-            <section>
-                <pre class="line-numbers language-javascript">
-                    <code class="language-javascript">
-                        let pId = 12;
-                        {
-                            let pId = 2000;
-                        }
-                        console.log(pId);
-                    </code>
-                </pre>
-                <pre id="block1" class="transparent"></pre>
-            </section>
-
-            <hr />
-
-            <!-- Code Block -->
-            <h3>3b.</h3>
-            <section>
-                <pre class="line-numbers language-javascript">
-                    <code class="language-javascript">
-                        function updateProductId() {
-                            memberId = 15;
-                        }
-
-                        let memberId = null;
-                        updateProductId();
-                        console.log(memberId);
-                    </code>
-                </pre>
-                <pre id="block2" class="transparent"></pre>
-            </section>
-
-            <hr />
-
-            <!-- Code Block -->
-            <h3>3c.</h3>
-            <section>
-                <pre class="line-numbers language-javascript">
-                    <code class="language-javascript">
-                        let userId = 42;
-                        for (let userId = 0; userId < 10; userId++) {
-                        }
-                        console.log(userId);
-                    </code>
-                </pre>
-                <pre id="block3" class="transparent"></pre>
-            </section>
-
-            <hr />
-
-            <!-- Code Block -->
-            <h3>3d. block scoping - "var" v "let"</h3>
-            <section>
-                <pre class="line-numbers language-javascript">
-                    <code class="language-javascript">
-                        var updateFunctions = [];
-                        for (var i=0; i < 2; i++) {
-                            updateFunctions.push(function(){ return i;});
-                        }
-
-                        console.log(updateFunctions[0]());
-
-                        _________________________________________________________
-
-                        let updateFunctions = [];
-                        for (let i=0; i < 2; i++) {
-                            updateFunctions.push(function(){ return i;});
-                        }
-
-                        console.log(updateFunctions[0]());
-                    </code>
-                </pre>
-                <pre id="block4" class="transparent"></pre>
-            </section>
-
-            <!-- Code Block -->
-            <h3>3e. block scoping - const</h3>
-            <section>
-                <pre class="line-numbers language-javascript">
-                    <code class="language-javascript">
-                        const MARKUP_PCT = 100;
-                        console.log(MARKUP_PCT);
-                        _________________________________________________________
-                        const TOTAL_PRODUCTS;
-                        console.log(TOTAL_PRODUCTS);
-                        _________________________________________________________
-                        MARKUP_PCT = 10;
-                        console.log(MARKUP_PCT);
-                        _________________________________________________________
-                        const CHILD_AGE = 5;
-                        if(CHILD_AGE > 0) {
-                            const CHILD_AGE = 7;
-                        }
-                        console.log(CHILD_AGE);
-                    </code>
-                </pre>
-                <pre id="block5" class="transparent"></pre>
-            </section>
-
-            <!-- Code Block -->
-            <h2>4 Arrow Functions</h2>
-            <h3>4a.</h3>
+            <h3>03.03a.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -180,10 +48,10 @@
 
                     </code>
                 </pre>
-                <pre id="block6" class="transparent"></pre>
+                <pre id="block1" class="transparent"></pre>
             </section>
 
-            <h3>4b.</h3>
+            <h3>03.03b.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -197,10 +65,10 @@
                         _________________________________________________________
                     </code>
                 </pre>
-                <pre id="block7" class="transparent"></pre>
+                <pre id="block2" class="transparent"></pre>
             </section>
 
-            <h3>4c.</h3>
+            <h3>03.03c.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -223,10 +91,10 @@
                         _________________________________________________________
                     </code>
                 </pre>
-                <pre id="block8" class="transparent"></pre>
+                <pre id="block3" class="transparent"></pre>
             </section>
 
-            <h3>4d.</h3>
+            <h3>03.03d.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -251,13 +119,23 @@
                         _________________________________________________________
                     </code>
                 </pre>
-                <pre id="block9" class="transparent"></pre>
+                <pre id="block4" class="transparent"></pre>
             </section>
 
-            <h3>4e.</h3>
+            <h3>03.03e.</h3>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
+                        var invoice = {
+                            number: 123,
+                            process: () => console.log(this);
+                        };
+                        var newInvoice = {
+                            number: 456
+                        }
+
+                        invoice.process.bind(newInvoice)();
+                        _________________________________________________________
                         var invoice = {
                             number: 123,
                             process: function() {
@@ -273,8 +151,9 @@
                         _________________________________________________________
                     </code>
                 </pre>
-                <pre id="block10" class="transparent"></pre>
+                <pre id="block5" class="transparent"></pre>
             </section>
+            <a href="/03-let,const,block-scoping/3.2.html"><< 3.2. Let, const, block scoping</a>
         </div>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -283,6 +162,6 @@
         <script src="../node_modules/traceur/src/bootstrap.js"></script>
         <script src="../js/prism.js"></script>
         <script src="../js/customized.js"></script>
-        <script src="js/script.js"></script>
+        <script src="js/script.3.3.js"></script>
     </body>
 </html>

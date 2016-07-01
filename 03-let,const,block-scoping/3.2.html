@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03.02 - let, const, block scoping</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <link rel="stylesheet" href="../css/customized.css">
+</head>
+        <div class="container">
+            <a href="/"><< Go back</a>,
+            <a href="/03-let,const,block-scoping/3.3.html">03.3. Arrow Functions >></a>
+            <h1 class="page-header">03.02 - let, const, block scoping</h1>
+
+            <!-- Code Block -->
+            <h2>03.02.a. var</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        console.log(productId);
+                        var productId = 12;
+                    </code>
+                </pre>
+                <pre id="var" class="transparent"></pre>
+            </section>
+
+            <hr />
+
+            <!-- Code Block -->
+            <h2>03.02.b. let</h2>
+            <section class="zero-clipboard">
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        console.log(pId);
+                        let pId = 12;
+                    </code>
+                </pre>
+                <pre id="let" class="transparent"></pre>
+            </section>
+
+            <hr />
+
+            <!-- Code Block -->
+            <h2>03.02.c. block scoping</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        let pId = 12;
+                        {
+                            let pId = 2000;
+                        }
+                        console.log(pId);
+                    </code>
+                </pre>
+                <pre id="block1" class="transparent"></pre>
+            </section>
+
+            <hr />
+
+            <!-- Code Block -->
+            <h3>03.02.d.</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        function updateProductId() {
+                            memberId = 15;
+                        }
+
+                        let memberId = null;
+                        updateProductId();
+                        console.log(memberId);
+                    </code>
+                </pre>
+                <pre id="block2" class="transparent"></pre>
+            </section>
+
+            <hr />
+
+            <!-- Code Block -->
+            <h3>03.02.e.</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        let userId = 42;
+                        for (let userId = 0; userId < 10; userId++) {
+                        }
+                        console.log(userId);
+                    </code>
+                </pre>
+                <pre id="block3" class="transparent"></pre>
+            </section>
+
+            <hr />
+
+            <!-- Code Block -->
+            <h3>03.02.f. block scoping - "var" v "let"</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        var updateFunctions = [];
+                        for (var i=0; i < 2; i++) {
+                            updateFunctions.push(function(){ return i;});
+                        }
+
+                        console.log(updateFunctions[0]());
+
+                        _________________________________________________________
+
+                        let updateFunctions = [];
+                        for (let i=0; i < 2; i++) {
+                            updateFunctions.push(function(){ return i;});
+                        }
+
+                        console.log(updateFunctions[0]());
+                    </code>
+                </pre>
+                <pre id="block4" class="transparent"></pre>
+            </section>
+
+            <!-- Code Block -->
+            <h3>03.02.g. block scoping - const</h3>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        const MARKUP_PCT = 100;
+                        console.log(MARKUP_PCT);
+                        _________________________________________________________
+                        const TOTAL_PRODUCTS;
+                        console.log(TOTAL_PRODUCTS);
+                        _________________________________________________________
+                        MARKUP_PCT = 10;
+                        console.log(MARKUP_PCT);
+                        _________________________________________________________
+                        const CHILD_AGE = 5;
+                        if(CHILD_AGE > 0) {
+                            const CHILD_AGE = 7;
+                        }
+                        console.log(CHILD_AGE);
+                    </code>
+                </pre>
+                <pre id="block5" class="transparent"></pre>
+            </section>
+            <a href="/"><< Go back</a>,
+            <a href="/03-let,const,block-scoping/3.3.html">03.3. Arrow Functions >></a>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../node_modules/traceur/bin/traceur.js"></script>
+        <script src="../node_modules/traceur/bin/BrowserSystem.js"></script>
+        <script src="../node_modules/traceur/src/bootstrap.js"></script>
+        <script src="../js/prism.js"></script>
+        <script src="../js/customized.js"></script>
+        <script src="js/script.3.2.js"></script>
+    </body>
+</html>
