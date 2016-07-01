@@ -2,7 +2,7 @@
 var getPrice = () => 5.99;
 var divId = 'block1';
 
-consoleAndDisplayResults(typeof getPrice, 'block6');
+consoleAndDisplayResults(typeof getPrice, divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 consoleAndDisplayResults(getPrice(), divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
@@ -112,3 +112,24 @@ newInvoice = {
     number: 456
 }
 invoice.process().bind(newInvoice)();
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+invoice.process().call(newInvoice);
+
+//********************************************************************//
+//********************************************************************//
+//********************************************************************//
+//********************************************************************//
+
+divId = 'block6';
+
+/*
+getPrice = ()
+    => 5.99;
+*/
+consoleAndDisplayResults("Uncaught SyntaxError: Unexpected token =>", divId);
+
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+getPrice = () => 5.99;
+consoleAndDisplayResults(getPrice.hasOwnProperty("prototype"), divId);

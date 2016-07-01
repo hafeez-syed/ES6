@@ -10,10 +10,11 @@
 </head>
         <div class="container">
             <a href="/03-let,const,block-scoping/3.2.html"><< 3.2. Let, const, block scoping</a>
+            <a href="/03-let,const,block-scoping/3.4.html">3.4. Default Function Parameters >></a>
             <h1 class="page-header">03.03 - Arrow Functions</h1>
 
             <!-- Code Block -->
-            <h3>03.03a.</h3>
+            <h2>03.03a.</h2>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -51,7 +52,7 @@
                 <pre id="block1" class="transparent"></pre>
             </section>
 
-            <h3>03.03b.</h3>
+            <h2>03.03b.</h2>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -68,7 +69,7 @@
                 <pre id="block2" class="transparent"></pre>
             </section>
 
-            <h3>03.03c.</h3>
+            <h2>03.03c.</h2>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -94,7 +95,7 @@
                 <pre id="block3" class="transparent"></pre>
             </section>
 
-            <h3>03.03d.</h3>
+            <h2>03.03d.</h2>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -122,7 +123,7 @@
                 <pre id="block4" class="transparent"></pre>
             </section>
 
-            <h3>03.03e.</h3>
+            <h2>03.03e.</h2>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
@@ -145,15 +146,39 @@
                         var newInvoice = {
                             number: 456
                         }
-                        // You can't bind an object with an arrow function
+                        // Result: 123.
+                        // You can't bind an new object with an arrow function
+                        // hence value of `this` wont change
                         invoice.process().bind(newInvoice)();
 
                         _________________________________________________________
+                        // Result: 123.
+                        // With arrow functions, you can't use bind, call or apply.
+                        invoice.process().call(newInvoice);
                     </code>
                 </pre>
                 <pre id="block5" class="transparent"></pre>
             </section>
+
+            <h2>03.03f. Fat arrow symbol on new line</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        var getPrice = ()
+                            => 5.99;
+                        console.log(typeof getPrice);
+
+                        _________________________________________________________
+                        // Unlike ES5, in ES6 when we declare a function with fat arrows `=>`,
+                        // we do not have access to `prototype` field
+                        var getPrice = () => 5.99;
+                        console.log(getPrice.hasOwnProperty("prototype");
+                    </code>
+                </pre>
+                <pre id="block6" class="transparent"></pre>
+            </section>
             <a href="/03-let,const,block-scoping/3.2.html"><< 3.2. Let, const, block scoping</a>
+            <a href="/03-let,const,block-scoping/3.4.html">3.4. Default Function Parameters >></a>
         </div>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>

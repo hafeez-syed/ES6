@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03.04 - Default Function Parameters</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <link rel="stylesheet" href="../css/customized.css">
+</head>
+        <div class="container">
+            <a href="/03-let,const,block-scoping/3.3.html"><< 03.3. Arrow Functions</a>
+            <a href="/03-let,const,block-scoping/3.5.html">03.5. Rest and Spread >></a>
+            <h1 class="page-header">03.04 - Default Function Parameters</h1>
+
+            <!-- Code Block -->
+            <h2>03.04a.</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        var getProduct = function(productId = 1000) {
+                            console.log(productId);
+                        };
+
+                        getProduct();
+
+                        _________________________________________________________
+                        // Even if we pass `undefined` as a parameter,
+                        // JS will take `1000` as the default value
+                        // for productId
+                        var getProduct = function(productId = 1000, type = 'software') {
+                            console.log(productId + ', ' + type);
+                        };
+
+                        getProduct(undefined, 'hardware');
+
+
+                        _________________________________________________________
+                        var baseTax = 0.07;
+
+                        // When setting a default, we do have access to the variable `baseTax`
+                        // that is in the context
+                        var getTotal = function(price, tax = price * baseTax) {
+                            console.log(price + tax);
+                        };
+                        getProduct(5.00);
+
+                        _________________________________________________________
+                        var generateBaseTax = () => 0.07;
+
+                        // We can also access the function `generateBaseTax()`
+                        // that is in the context.
+                        var getTotal = function(price, tax = price * generateBaseTax()) {
+                            console.log(price + tax);
+                        };
+                        getTotal(5.00);
+
+
+                        _________________________________________________________
+                        var getAdjustment = function(price = adjustment, adjustment = 1.00) {
+                            console.log(price + adjustment);
+                        };
+                        getAdjustment();
+
+
+                        _________________________________________________________
+                        var getAdjustment = function(price = adjustment, adjustment = 1.00) {
+                            console.log(price + adjustment);
+                        };
+                        getAdjustment(5.00);
+
+
+                        _________________________________________________________
+                        var getFunction = new Function("price = 20.00", "return price;");
+                        console.log(getFunction());
+                    </code>
+                </pre>
+                <pre id="block1" class="transparent"></pre>
+            </section>
+            <a href="/03-let,const,block-scoping/3.3.html"><< 03.3. Arrow Functions</a>
+            <a href="/03-let,const,block-scoping/3.5.html">03.5. Rest and Spread >></a>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../node_modules/traceur/bin/traceur.js"></script>
+        <script src="../node_modules/traceur/bin/BrowserSystem.js"></script>
+        <script src="../node_modules/traceur/src/bootstrap.js"></script>
+        <script src="../js/prism.js"></script>
+        <script src="../js/customized.js"></script>
+        <script src="js/script.3.4.js"></script>
+    </body>
+</html>
