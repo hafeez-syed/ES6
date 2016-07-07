@@ -1,5 +1,5 @@
 /**
- * Created by d317142 on 27/05/2016.
+ * Created by Hafeez Syed on 27/05/2016.
  */
 /*
  Gulp tasks for es6Rapid
