@@ -13,68 +13,91 @@
             <h1 class="page-header">03.05 - Rest and Spread</h1>
 
             <!-- Code Block -->
-            <h2>03.05a.</h2>
+            <h2>03.05a. Rest</h2>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
-                        var getProduct = function(productId = 1000) {
-                            console.log(productId);
+                        // The `...` symbol is the `Rest` operator
+                        // it will gather up all the remaining parameters in the function
+                        var showCategories = function(productId, ...categories) {
+                            console.log(categories instanceof Array);
                         };
 
-                        getProduct();
+                        showCategories(123, 'search', 'advertising');
 
                         _________________________________________________________
-                        // Even if we pass `undefined` as a parameter,
-                        // JS will take `1000` as the default value
-                        // for productId
-                        var getProduct = function(productId = 1000, type = 'software') {
-                            console.log(productId + ', ' + type);
+                        var showCategories = function(productId, ...categories) {
+                            console.log(categories);
                         };
 
-                        getProduct(undefined, 'hardware');
-
+                        showCategories(123, 'search', 'advertising');
 
                         _________________________________________________________
-                        var baseTax = 0.07;
-
-                        // When setting a default, we do have access to the variable `baseTax`
-                        // that is in the context
-                        var getTotal = function(price, tax = price * baseTax) {
-                            console.log(price + tax);
+                        var showCategories = function(productId, ...categories) {
+                            console.log(categories);
                         };
-                        getProduct(5.00);
+
+                        showCategories(123);
 
                         _________________________________________________________
-                        var generateBaseTax = () => 0.07;
-
-                        // We can also access the function `generateBaseTax()`
-                        // that is in the context.
-                        var getTotal = function(price, tax = price * generateBaseTax()) {
-                            console.log(price + tax);
+                        var showCategories = function(productId, ...categories) {
                         };
-                        getTotal(5.00);
 
+                        showCategories(showCategories.length);
 
                         _________________________________________________________
-                        var getAdjustment = function(price = adjustment, adjustment = 1.00) {
-                            console.log(price + adjustment);
+                        var showCategories = function(productId, ...categories) {
+                            console.log(arguments.length);
                         };
-                        getAdjustment();
 
-
-                        _________________________________________________________
-                        var getAdjustment = function(price = adjustment, adjustment = 1.00) {
-                            console.log(price + adjustment);
-                        };
-                        getAdjustment(5.00);
-
+                        showCategories(123, 'search', 'advertising');
 
                         _________________________________________________________
-                        var getFunction = new Function("price = 20.00", "return price;");
-                        console.log(getFunction());
+                        var showCategories = new Function('...categories', 'return categories');
+
+                        console.log(showCategories('search', 'advertising'));
+
+                        _________________________________________________________
                     </code>
                 </pre>
                 <pre id="block1" class="transparent"></pre>
+            </section>
+
+            <h2>03.05b. Spread</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        // The `...` symbol is the `Spread` operator
+
+                        var prices = [12, 20, 18];
+                        var maxPrices = Math.max(...prices);
+                        console.log(maxPrices);
+
+                        _________________________________________________________
+                        var prices = [12, 20, 18];
+                        var newPriceArray = [...prices];
+                        console.log(newPriceArray);
+
+                        _________________________________________________________
+                        var newPriceArray = Array(...[,,]);
+                        showCategories(newPriceArray);
+
+                        _________________________________________________________
+                        var newPriceArray = [...[,,]];
+                        showCategories(newPriceArray);
+
+                        _________________________________________________________
+                        var maxCode = Math.max(...'43210');
+                        console.log(maxCode);
+
+                        _________________________________________________________
+                        var codeArray = ['A', ...'BCD', 'E'];
+                        console.log(codeArray);
+
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block2" class="transparent"></pre>
             </section>
             <a href="/03-let,const,block-scoping/3.4.html"><< 3.4. Default Function Parameters</a>
         </div>

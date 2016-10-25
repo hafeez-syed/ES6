@@ -1,49 +1,84 @@
 'use strict';
 var divId = 'block1';
-var getProduct = function(productId = 1000) {
-    consoleAndDisplayResults(productId, divId);
+var showCategories = function(productId, ...categories) {
+    consoleAndDisplayResults(categories instanceof Array, divId);
 };
 
-getProduct();
+showCategories(123, 'search', 'advertising');
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
-getProduct = function(productId = 1000, type = 'software') {
-    consoleAndDisplayResults(productId + ', ' + type, divId);
+
+showCategories = function(productId, ...categories) {
+    consoleAndDisplayResults('[' + categories + ']', divId);
 };
-getProduct(undefined, 'hardware');
+
+showCategories(123, 'search', 'advertising');
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
-var baseTax = 0.07;
-var getTotal = function(price, tax = price * baseTax) {
-    consoleAndDisplayResults(price + tax, divId);
+showCategories = function(productId, ...categories) {
+    consoleAndDisplayResults(categories + '[]', divId);
 };
-getTotal(5.00);
+
+showCategories(123);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
 
-var generateBaseTax = () => 0.07;
-
-getTotal = function(price, incomeTax = price * generateBaseTax()) {
-    consoleAndDisplayResults(price + incomeTax, divId);
+showCategories = function(productId, ...categories) {
 };
-getTotal(5.00);
+
+consoleAndDisplayResults(showCategories.length, divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
 
-//var getAdjustment = function(val = adjustment, adjustment = 1.00) {
-    //consoleAndDisplayResults(val + adjustment, divId);
-    consoleAndDisplayResults('Uncaught ReferenceError: adjustment is not defined', divId);
-//};
-//getAdjustment();
-consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
-
-var getAdjustment2 = function(val = adjustment, adjustment = 1.00) {
-    consoleAndDisplayResults(val + adjustment, divId);
+var showCategories = function(productId, ...categories) {
+    consoleAndDisplayResults(arguments.length, divId);
 };
-getAdjustment2(5.00);
+
+showCategories(123, 'search', 'advertising');
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
 
- var getFunction = new Function("price = 20.00", "return price;");
-consoleAndDisplayResults(getFunction(), divId);
+var showCategories = new Function('...categories', 'return categories');
+
+consoleAndDisplayResults('[' + showCategories('search', 'advertising') + ']', divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+var divId = 'block2';
+
+var prices = [12, 20, 18];
+var maxPrices = Math.max(...prices);
+
+consoleAndDisplayResults(maxPrices, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+var prices = [12, 20, 18];
+var newPriceArray = [...prices];
+
+consoleAndDisplayResults(newPriceArray, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+newPriceArray = Array(...[,,]);
+
+consoleAndDisplayResults('[undefined' + newPriceArray + 'undefined]', divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+newPriceArray = [...[,,]];
+
+consoleAndDisplayResults('[undefined' + newPriceArray + 'undefined]', divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+var maxCode = Math.max(...'43210');
+
+consoleAndDisplayResults(maxCode, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+var codeArray = ['A', ...'BCD', 'E'];
+
+consoleAndDisplayResults(codeArray, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 

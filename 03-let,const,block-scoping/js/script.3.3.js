@@ -28,11 +28,11 @@ divId = 'block2'
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
 document.addEventListener('click', function() {
-    consoleAndDisplayResults('ES5 way will give you >#document', 'block2');
+    consoleAndDisplayResults('ES5 way will give you #document', 'block2');
 });
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
-document.addEventListener('click', () => consoleAndDisplayResults('ES6 way will give you '+ this, 'block2'));
+document.addEventListener('click', () => consoleAndDisplayResults('ES6 way will give you Window {...}', 'block2'));
 
 //********************************************************************//
 //********************************************************************//

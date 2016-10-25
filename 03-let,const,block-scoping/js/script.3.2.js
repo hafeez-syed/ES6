@@ -63,7 +63,7 @@ for (var i=0; i < 2; i++) {
     updateVarFunctions.push(function(){ return i;});
 }
 
-consoleAndDisplayResults(updateVarFunctions[0](), divId);
+consoleAndDisplayResults("VAR ::: " + updateVarFunctions[0]() + ", " + updateVarFunctions[1](), divId);
 
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
@@ -72,7 +72,7 @@ for (let i=0; i < 2; i++) {
     updateLetFunctions.push(function(){ return i;});
 }
 
-consoleAndDisplayResults(updateLetFunctions[0](), divId);
+consoleAndDisplayResults("LET ::: " + updateLetFunctions[0]() + ", " + updateLetFunctions[1](), divId);
 
 //********************************************************************//
 //********************************************************************//
