@@ -52,7 +52,7 @@ consoleAndDisplayResults(maxPrices, divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
 
-var prices = [12, 20, 18];
+prices = [12, 20, 18];
 var newPriceArray = [...prices];
 
 consoleAndDisplayResults(newPriceArray, divId);
@@ -60,12 +60,6 @@ consoleAndDisplayResults('\n____________________________________________________
 
 
 newPriceArray = Array(...[,,]);
-
-consoleAndDisplayResults('[undefined' + newPriceArray + 'undefined]', divId);
-consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
-
-
-newPriceArray = [...[,,]];
 
 consoleAndDisplayResults('[undefined' + newPriceArray + 'undefined]', divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);

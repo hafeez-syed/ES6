@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="../css/prism.css">
     <link rel="stylesheet" href="../css/customized.css">
 </head>
-        <div class="container">
-            <a href="/"><< Go back</a>,
-            <a href="/03-let,const,block-scoping/3.3.html">03.3. Arrow Functions >></a>
+        <div class="container" data-chapter="3">
+            <div class="page-link-header"></div>
             <h1 class="page-header">03.02 - let, const, block scoping</h1>
 
             <!-- Code Block -->
@@ -141,8 +140,8 @@
                 </pre>
                 <pre id="block5" class="transparent"></pre>
             </section>
-            <a href="/"><< Go back</a>,
-            <a href="/03-let,const,block-scoping/3.3.html">03.3. Arrow Functions >></a>
+
+            <div class="page-link-footer"></div>
         </div>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -152,5 +151,12 @@
         <script src="../js/prism.js"></script>
         <script src="../js/customized.js"></script>
         <script src="js/script.3.2.js"></script>
+        <script>
+            var content = {
+                nextSection: 3.3,
+                nextTitle: 'Arrow Functions'
+            };
+            addLinks(content);
+        </script>
     </body>
 </html>

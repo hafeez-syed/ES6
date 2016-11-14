@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="../css/prism.css">
     <link rel="stylesheet" href="../css/customized.css">
 </head>
-        <div class="container">
-            <a href="/03-let,const,block-scoping/3.3.html"><< 03.3. Arrow Functions</a>
-            <a href="/03-let,const,block-scoping/3.5.html">03.5. Rest and Spread >></a>
+        <div class="container" data-chapter="3">
+            <div class="page-link-header"></div>
             <h1 class="page-header">03.04 - Default Function Parameters</h1>
 
             <!-- Code Block -->
@@ -77,8 +76,8 @@
                 </pre>
                 <pre id="block1" class="transparent"></pre>
             </section>
-            <a href="/03-let,const,block-scoping/3.3.html"><< 03.3. Arrow Functions</a>
-            <a href="/03-let,const,block-scoping/3.5.html">03.5. Rest and Spread >></a>
+
+            <div class="page-link-footer"></div>
         </div>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -88,5 +87,14 @@
         <script src="../js/prism.js"></script>
         <script src="../js/customized.js"></script>
         <script src="js/script.3.4.js"></script>
+        <script>
+            var content = {
+                prevSection: 3.3,
+                prevTitle: 'Arrow Functions',
+                nextSection: 3.5,
+                nextTitle: 'Rest and Spread'
+            };
+            addLinks(content);
+        </script>
     </body>
 </html>

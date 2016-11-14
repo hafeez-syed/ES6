@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="../css/prism.css">
     <link rel="stylesheet" href="../css/customized.css">
 </head>
-        <div class="container">
-            <a href="/03-let,const,block-scoping/3.2.html"><< 3.2. Let, const, block scoping</a>
-            <a href="/03-let,const,block-scoping/3.4.html">3.4. Default Function Parameters >></a>
+        <div class="container" data-chapter="3">
+            <div class="page-link-header"></div>
             <h1 class="page-header">03.03 - Arrow Functions</h1>
 
             <!-- Code Block -->
@@ -177,8 +176,8 @@
                 </pre>
                 <pre id="block6" class="transparent"></pre>
             </section>
-            <a href="/03-let,const,block-scoping/3.2.html"><< 3.2. Let, const, block scoping</a>
-            <a href="/03-let,const,block-scoping/3.4.html">3.4. Default Function Parameters >></a>
+
+            <div class="page-link-footer"></div>
         </div>
         <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -188,5 +187,14 @@
         <script src="../js/prism.js"></script>
         <script src="../js/customized.js"></script>
         <script src="js/script.3.3.js"></script>
+        <script>
+            var content = {
+                prevSection: 3.2,
+                prevTitle: 'Let, const, block scoping',
+                nextSection: 3.4,
+                nextTitle: 'Default Function Parameters'
+            };
+            addLinks(content);
+        </script>
     </body>
 </html>
