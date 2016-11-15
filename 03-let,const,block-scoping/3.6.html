@@ -13,19 +13,112 @@
             <h1 class="page-header">03.06 - Object Literal Extensions</h1>
 
             <!-- Code Block -->
-            <h2>03.06. Object Literal Extensions</h2>
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
-                        // The `...` symbol is the `Rest` operator
-                        // it will gather up all the remaining parameters in the function
-                        var showCategories = function(productId, ...categories) {
-                            console.log(categories instanceof Array);
+                        var price = 5.99, quantity = 30;
+                        var productView = {
+                        price, // Object Literal short hand
+                        quantity // Object Literal short hand
                         };
 
-                        showCategories(123, 'search', 'advertising');
+                        console.log(productView);
 
                         _________________________________________________________
+
+                        // Here in `calculateValue` function `this` refers to the context of the `productView` object
+                        var price = 5.99, quantity = 30;
+                        var productView = {
+                            price,
+                            quantity,
+                            calculateValue() {
+                                return this.price * this.quantity;
+                            }
+                        };
+
+                        console.log(productView.calculateValue());
+
+                        _________________________________________________________
+
+                        // Here in `calculateValue` function `this` refers to the context of the `productView` object
+                        // Check the output as the changed value of `price` and `quantity` will effect the output
+                        var price = 5.99, quantity = 30;
+                        var productView = {
+                            price: 7.99,
+                            quantity: 1,
+                            calculateValue() {
+                                return this.price * this.quantity;
+                            }
+                        };
+
+                        console.log(productView.calculateValue());
+
+                        _________________________________________________________
+
+                        // A function can also be written with a space but it should be
+                        // wrapped with quotes
+                        var price = 5.99, quantity = 30;
+                        var productView = {
+                            price: 7.99,
+                            quantity: 1,
+                            "calculate value"() {
+                                return this.price * this.quantity;
+                            }
+                        };
+
+                        console.log(productView["calculate value"]());
+
+                        _________________________________________________________
+
+                        // DYNAMIC OBJECT PROPERTY NAME: Example 1
+                        var field = 'dynamicField';
+                        var price = 5.99;
+                        var productView = {
+                            [field]: price,
+                        };
+
+                        console.log(productView);
+
+                        _________________________________________________________
+
+                        // DYNAMIC OBJECT PROPERTY NAME: Example 2
+                        var field = 'dynamicField';
+                        var price = 5.99;
+                        var productView = {
+                            [field + '-001']: price,
+                        };
+
+                        console.log(productView);
+
+                        _________________________________________________________
+
+                        // DYNAMIC OBJECT PROPERTY NAME: Example 3 with GETTER and SETTER
+                        var ident = 'productId';
+                        var id = 10;
+                        var productView = {
+                            get [ident]() {
+                                return id;
+                            },
+                            set [ident](value) {
+                                id = value;
+                            }
+                        };
+
+                        console.log(productView.productId);
+                        productView.productId = 20;
+                        console.log(productView.productId);
+
+                        _________________________________________________________
+
+                        // DYNAMIC METHOD/FUNCTION NAME: Example 1
+                        var method = 'doIt';
+                        var productView = {
+                            [method + '-001']() {
+                                console.log('inside a method');
+                            },
+                        };
+
+                        productView['doIt-001']();
                     </code>
                 </pre>
                 <pre id="block1" class="transparent"></pre>

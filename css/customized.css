@@ -39,3 +39,12 @@ code[class*="language-"] {
 .clear {
     clear: both;
 }
+
+span.line-numbers-rows {
+    left: 20px !important;
+    width: 30px !important;
+}
+
+code {
+    left: -150px;
+}
