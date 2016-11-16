@@ -47,8 +47,8 @@ function addLinks(OPTIONS) {
         prevDirectory = '../';
         prevTitle = '<<< Goto main';
     } else {
-        prevDirectory = '/' + directory + '/' + prevSection + '.html';
-        prevTitle = '<<< 0' + prevSection + '. ' + prevTitle;
+        prevDirectory = '/' + directory + '/' + prevSection.toFixed(2) + '.html';
+        prevTitle = '<<< 0' + prevSection.toFixed(2) + '. ' + prevTitle;
     }
     
     prevString += '<a class="left-align" href="' + prevDirectory + '">';
@@ -62,8 +62,8 @@ function addLinks(OPTIONS) {
         nextDirectory = '../';
         nextTitle = 'Goto main >>>';
     } else {
-        nextDirectory = '/' + directory + '/' + nextSection + '.html';
-        nextTitle = '0' + nextSection + '. ' + nextTitle + ' >>>';
+        nextDirectory = '/' + directory + '/' + nextSection.toFixed(2) + '.html';
+        nextTitle = '0' + nextSection.toFixed(2) + '. ' + nextTitle + ' >>>';
     }
     
     nextString += '<a class="right-align" href="' + nextDirectory + '">';

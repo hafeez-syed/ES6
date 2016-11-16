@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03.10. Destructuring</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/prism.css">
+    <link rel="stylesheet" href="../css/customized.css">
+</head>
+        <div class="container" data-chapter="3">
+            <div class="page-link-header"></div>
+            <h1 class="page-header">03.10. Destructing</h1>
+
+            <!-- Code Block -->
+            <h2>03.10a. Destructuring Arrays</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        let salary = [32000, 50000, 75000];
+                        let [low, medium, high] = salary;
+
+                        console.log(medium);
+                        console.log(high);
+                        console.log(low);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000];
+                        let [low, medium, high] = salary;
+
+                        console.log(high);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000, 75000];
+                        let [low, , high] = salary;
+
+                        console.log(high);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000, 75000];
+                        let [lowerSalary1, ...remaining] = salary;
+
+                        console.log(remaining);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000];
+                        let [lowerSalary2, average, highSalary1 = 88000] = salary;
+
+                        console.log(highSalary1);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000, [88000, 99000]];
+                        let [lowerSalary3, averageSalary1, [actualLow, actualHigh]] = salary;
+
+                        console.log(actualLow);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000];
+                        let lowerSalary4, averageSalary2, highSalary2;
+                        [lowerSalary4, averageSalary2, highSalary2 = 88000] = salary;
+
+                        console.log(highSalary2);
+
+                        _________________________________________________________
+
+                        function reviewSalary([lowerSalary5, averageSalary3], highSalary3 = 88000) {
+                            console.log(averageSalary3);
+                        }
+
+                        reviewSalary([32000, 50000]);
+
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block1" class="transparent"></pre>
+            </section>
+
+            <h2>03.10b. Destructuring Objects</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        let salaryObject = {
+                            lowSal: 32000,
+                            averageSal: 50000,
+                            highSal: 75000
+                        }
+                        let {lowSal, averageSal, highSal} = salaryObject;
+                        console.log(highSal);
+
+                        _________________________________________________________
+
+                        let salaryObject1 = {
+                            lowSal1: 32000,
+                            averageSal1: 50000,
+                            highSal1: 75000
+                        }
+                        let {lowSal1: newSal1, averageSal1: newAverageSal1, highSal1: newHigh1} = salaryObject1;
+                        console.log(newHigh1); // We are actually renaming `highSal1` to `newHigh1` so, it will not output `undefined`
+
+                        _________________________________________________________
+
+                        let salaryObject2 = {
+                            lowSal2: 32000,
+                            averageSal2: 50000,
+                            highSal2: 75000
+                        }
+                        let newSal2, newAverageSal2, newHigh2;
+                        {lowSal2: newSal2, averageSal2: newAverageSal2, highSal2: newHigh2} = salaryObject2;
+                        console.log(newHigh2); // Since we have not used object literals ie, `{}`, it will output `Syntax Error`
+
+                        _________________________________________________________
+
+                        let salaryObject3 = {
+                            lowSal3: 32000,
+                            averageSal3: 50000,
+                            highSal3: 75000
+                        }
+                        let newSal3, newAverageSal3, newHigh3;
+                        ({lowSal3: newSal3, averageSal3: newAverageSal3, highSal3: newHigh3} = salaryObject3);
+                        console.log(newHigh3); // We have now rapped the above object in the parenthesis to fix the Syntax Error
+
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block2" class="transparent"></pre>
+            </section>
+
+            <h2>03.10c. Destructuring String</h2>
+            <section>
+                <pre class="line-numbers language-javascript">
+                    <code class="language-javascript">
+                        let [maxCode, minCode] = 'AZ';
+                        console.log(`min: ${minCode} max: ${maxCode}`);
+
+                        _________________________________________________________
+                    </code>
+                </pre>
+                <pre id="block3" class="transparent"></pre>
+            </section>
+
+            <div class="page-link-footer"></div>
+        </div>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="../node_modules/traceur/bin/traceur.js"></script>
+        <script src="../node_modules/traceur/bin/BrowserSystem.js"></script>
+        <script src="../node_modules/traceur/src/bootstrap.js"></script>
+        <script src="../js/prism.js"></script>
+        <script src="../js/customized.js"></script>
+        <script src="js/script.3.10.js"></script>
+        <script>
+            var content = {
+                prevSection: 3.9,
+                prevTitle: 'Template Literals',
+                nextSection: 3.11,
+                nextTitle: 'Advanced Destructing'
+            };
+            addLinks(content);
+        </script>
+    </body>
+</html>

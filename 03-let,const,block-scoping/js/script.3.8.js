@@ -10,3 +10,13 @@ value = 0O10;
 consoleAndDisplayResults(value, divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
+value = 0b10;
+
+consoleAndDisplayResults(value, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+value = 0B10;
+
+consoleAndDisplayResults(value, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
