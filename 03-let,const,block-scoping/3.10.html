@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>03.10. Destructuring</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../css/prism.css">
-    <link rel="stylesheet" href="../css/customized.css">
+    <script src="../js/customized.js"></script>
+
+
+    <!--
+    *******************************************
+    *******************************************
+    *******************************************
+            HEADER SCRIPTS - STARTS
+    *******************************************
+    *******************************************
+    *******************************************
+    -->
+    <script>
+        headerScript();
+    </script>
+    <!--
+    *******************************************
+    *******************************************
+    *******************************************
+            HEADER SCRIPTS - ENDS
+    *******************************************
+    *******************************************
+    *******************************************
+    -->
+
 </head>
+<body>
         <div class="container" data-chapter="3">
             <div class="page-link-header"></div>
             <h1 class="page-header">03.10. Destructing</h1>
@@ -146,19 +168,35 @@
 
             <div class="page-link-footer"></div>
         </div>
-        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-        <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="../node_modules/traceur/bin/traceur.js"></script>
-        <script src="../node_modules/traceur/bin/BrowserSystem.js"></script>
-        <script src="../node_modules/traceur/src/bootstrap.js"></script>
-        <script src="../js/prism.js"></script>
-        <script src="../js/customized.js"></script>
+
+        <!--
+        *******************************************
+        *******************************************
+        *******************************************
+                FOOTER SCRIPTS - STARTS
+        *******************************************
+        *******************************************
+        *******************************************
+        -->
+        <script>
+            footerScript();
+        </script>
+        <!--
+        *******************************************
+        *******************************************
+        *******************************************
+                FOOTER SCRIPTS - ENDS
+        *******************************************
+        *******************************************
+        *******************************************
+        -->
+
         <script src="js/script.3.10.js"></script>
         <script>
             var content = {
-                prevSection: 3.9,
+                prevSection: '3.9',
                 prevTitle: 'Template Literals',
-                nextSection: 3.11,
+                nextSection: '3.11',
                 nextTitle: 'Advanced Destructing'
             };
             addLinks(content);

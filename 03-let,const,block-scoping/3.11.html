@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>03.09. Template Literals</title>
+    <title>03.11. Advanced Destructuring</title>
     <script src="../js/customized.js"></script>
-
 
     <!--
     *******************************************
@@ -32,70 +31,69 @@
 <body>
         <div class="container" data-chapter="3">
             <div class="page-link-header"></div>
-            <h1 class="page-header">03.09. Template Literals</h1>
+            <h1 class="page-header">03.11. Advanced Destructing</h1>
 
             <!-- Code Block -->
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
-                        let invoiceNum = '1350';
+                        let salary = [32000, 50000, 75000];
+                        let [low, medium, high] = salary;
 
-                        // Interpolating string with value
-                        console.log(`Invoice Number: ${invoiceNum}`);
-
-                        _________________________________________________________
-
-                        let invoiceNum = '1350';
-
-                        // Because of the escape '\' no interpolation takes place
-                        console.log(`Invoice Number: \${invoiceNum}`);
+                        console.log(medium);
+                        console.log(high);
+                        console.log(low);
 
                         _________________________________________________________
 
-                        let message = `A
-                        B
-                        C`;
+                        let salary = [32000, 50000];
+                        let [low, medium, high] = salary;
 
-                        console.log(message);
-
-                        _________________________________________________________
-
-                        let invoiceNum = '1350';
-
-                        console.log(`Invoice Number: ${"INV-" + invoiceNum}`);
+                        console.log(high);
 
                         _________________________________________________________
 
-                        function showMessage(message) {
-                            let invoiceNum = '1350';
-                            console.log(message);
+                        let salary = [32000, 50000, 75000];
+                        let [low, , high] = salary;
+
+                        console.log(high);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000, 75000];
+                        let [lowerSalary1, ...remaining] = salary;
+
+                        console.log(remaining);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000];
+                        let [lowerSalary2, average, highSalary1 = 88000] = salary;
+
+                        console.log(highSalary1);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000, [88000, 99000]];
+                        let [lowerSalary3, averageSalary1, [actualLow, actualHigh]] = salary;
+
+                        console.log(actualLow);
+
+                        _________________________________________________________
+
+                        let salary = [32000, 50000];
+                        let lowerSalary4, averageSalary2, highSalary2;
+                        [lowerSalary4, averageSalary2, highSalary2 = 88000] = salary;
+
+                        console.log(highSalary2);
+
+                        _________________________________________________________
+
+                        function reviewSalary([lowerSalary5, averageSalary3], highSalary3 = 88000) {
+                            console.log(averageSalary3);
                         }
 
-                        let invoiceNum = '1350';
-
-                        // Interpolation happens first before the function call
-                        // so the output will be 1350
-                        showMessage(`Invoice Number: ${invoiceNum}`);
-
-                        _________________________________________________________
-
-                        function processInvoice(segments) {
-                            console.log(segments);
-                        }
-
-                        processInvoice `template`;
-
-                        _________________________________________________________
-
-                        function processInvoices(segments, ...values) {
-                            console.log(segments);
-                            console.log(values);
-                        }
-
-                        let invoiceNum = '1350';
-                        let amount = '2000';
-
-                        processInvoice `Invoice: ${invoiceNum} for ${amount}`;
+                        reviewSalary([32000, 50000]);
 
                         _________________________________________________________
                     </code>
@@ -128,13 +126,11 @@
         *******************************************
         -->
 
-        <script src="js/script.3.9.js"></script>
+        <script src="js/script.3.11.js"></script>
         <script>
             var content = {
-                prevSection: '3.8',
-                prevTitle: 'Octal and Binary Literals',
-                nextSection: '3.10',
-                nextTitle: 'Destructing'
+                prevSection: '3.11',
+                prevTitle: 'Advanced Destructuring'
             };
             addLinks(content);
         </script>

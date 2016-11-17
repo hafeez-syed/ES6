@@ -9,6 +9,7 @@ function consoleAndDisplayResults(val, div) {
 }
 
 function addLinks(OPTIONS) {
+    console.log(OPTIONS);
     var prevSection = OPTIONS.prevSection,
         prevTitle = OPTIONS.prevTitle,
         nextSection = OPTIONS.nextSection,
@@ -47,8 +48,8 @@ function addLinks(OPTIONS) {
         prevDirectory = '../';
         prevTitle = '<<< Goto main';
     } else {
-        prevDirectory = '/' + directory + '/' + prevSection.toFixed(2) + '.html';
-        prevTitle = '<<< 0' + prevSection.toFixed(2) + '. ' + prevTitle;
+        prevDirectory = '/' + directory + '/' + prevSection + '.html';
+        prevTitle = '<<< 0' + prevSection + '. ' + prevTitle;
     }
     
     prevString += '<a class="left-align" href="' + prevDirectory + '">';
@@ -62,8 +63,8 @@ function addLinks(OPTIONS) {
         nextDirectory = '../';
         nextTitle = 'Goto main >>>';
     } else {
-        nextDirectory = '/' + directory + '/' + nextSection.toFixed(2) + '.html';
-        nextTitle = '0' + nextSection.toFixed(2) + '. ' + nextTitle + ' >>>';
+        nextDirectory = '/' + directory + '/' + nextSection + '.html';
+        nextTitle = '0' + nextSection + '. ' + nextTitle + ' >>>';
     }
     
     nextString += '<a class="right-align" href="' + nextDirectory + '">';
@@ -78,3 +79,22 @@ function addLinks(OPTIONS) {
     header.append(clearString);
     footer.append(clearString);
 }
+
+function headerScript() {
+    var scriptString = '<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">';
+    scriptString += '<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">';
+    scriptString += '<link rel="stylesheet" href="../css/prism.css">';
+    scriptString += '<link rel="stylesheet" href="../css/customized.css">';
+    document.write(scriptString);
+}
+
+function footerScript() {
+    var scriptString = '<script src="../node_modules/jquery/dist/jquery.min.js"></script>';
+    scriptString += '<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>';
+    scriptString += '<script src="../node_modules/traceur/bin/traceur.js"></script>';
+    scriptString += '<script src="../node_modules/traceur/bin/BrowserSystem.js"></script>';
+    scriptString += '<script src="../node_modules/traceur/src/bootstrap.js"></script>';
+    scriptString += '<script src="../js/prism.js"></script>';
+    document.write(scriptString);
+}
+
