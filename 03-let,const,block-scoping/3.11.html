@@ -37,63 +37,53 @@
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
-                        let salary = [32000, 50000, 75000];
-                        let [low, medium, high] = salary;
+                        let [high, low] = [,];
 
-                        console.log(medium);
-                        console.log(high);
-                        console.log(low);
+                        console.log(`high: ${high} low: ${low}`);
 
                         _________________________________________________________
 
-                        let salary = [32000, 50000];
-                        let [low, medium, high] = salary;
+                        // Destructuring requires an iterator so undefined is not allowed
+                        let [high, low] = undefined;
 
-                        console.log(high);
-
-                        _________________________________________________________
-
-                        let salary = [32000, 50000, 75000];
-                        let [low, , high] = salary;
-
-                        console.log(high);
+                        console.log(`high: ${high} low: ${low}`);
 
                         _________________________________________________________
 
-                        let salary = [32000, 50000, 75000];
-                        let [lowerSalary1, ...remaining] = salary;
+                        // Destructuring requires an iterator so null is not allowed
+                        let [high, low] = null;
 
-                        console.log(remaining);
-
-                        _________________________________________________________
-
-                        let salary = [32000, 50000];
-                        let [lowerSalary2, average, highSalary1 = 88000] = salary;
-
-                        console.log(highSalary1);
+                        console.log(`high: ${high} low: ${low}`);
 
                         _________________________________________________________
 
-                        let salary = [32000, 50000, [88000, 99000]];
-                        let [lowerSalary3, averageSalary1, [actualLow, actualHigh]] = salary;
-
-                        console.log(actualLow);
-
-                        _________________________________________________________
-
-                        let salary = [32000, 50000];
-                        let lowerSalary4, averageSalary2, highSalary2;
-                        [lowerSalary4, averageSalary2, highSalary2 = 88000] = salary;
-
-                        console.log(highSalary2);
-
-                        _________________________________________________________
-
-                        function reviewSalary([lowerSalary5, averageSalary3], highSalary3 = 88000) {
-                            console.log(averageSalary3);
+                        try {
+                            let [high, low] = undefined;
+                        }
+                        catch(e) {
+                            console.log(e);
                         }
 
-                        reviewSalary([32000, 50000]);
+                        _________________________________________________________
+
+                        let [high, low, ] = [500, 200];
+
+                        console.log(`high: ${high} low: ${low}`);
+
+                        _________________________________________________________
+
+                        for(let [a, b] of [[5, 10]]) {
+                            console.log(`${a} ${b}`);
+                        }
+
+                        _________________________________________________________
+
+                        let count = 0;
+                        for(let [a, b] of [[5, 10]]) {
+                            console.log(`${a} ${b}`);
+                            count++;
+                        }
+                        console.log(count);
 
                         _________________________________________________________
                     </code>

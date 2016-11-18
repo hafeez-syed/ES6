@@ -9,7 +9,6 @@ function consoleAndDisplayResults(val, div) {
 }
 
 function addLinks(OPTIONS) {
-    console.log(OPTIONS);
     var prevSection = OPTIONS.prevSection,
         prevTitle = OPTIONS.prevTitle,
         nextSection = OPTIONS.nextSection,
