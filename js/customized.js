@@ -93,6 +93,7 @@ function footerScript() {
     scriptString += '<script src="../node_modules/traceur/bin/traceur.js"></script>';
     scriptString += '<script src="../node_modules/traceur/bin/BrowserSystem.js"></script>';
     scriptString += '<script src="../node_modules/traceur/src/bootstrap.js"></script>';
+    scriptString += '<script src="../js/es6-module-loader/es6-module-loader-dev.js"></script>';
     scriptString += '<script src="../js/prism.js"></script>';
     document.write(scriptString);
 }

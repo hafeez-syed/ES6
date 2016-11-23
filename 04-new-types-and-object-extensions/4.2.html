@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>03.09. Template Literals</title>
+    <title>04.02 - Module Basics</title>
     <script src="../js/customized.js"></script>
 
 
@@ -32,76 +32,56 @@
 <body>
         <div class="container" data-chapter="3">
             <div class="page-link-header"></div>
-            <h1 class="page-header">03.09. Template Literals</h1>
+            <h1 class="page-header">04.02 - Module Basics</h1>
 
             <!-- Code Block -->
             <section>
                 <pre class="line-numbers language-javascript">
                     <code class="language-javascript">
-                        let invoiceNum = '1350';
+                        console.log('Hello World, from a module!');
 
-                        // Interpolating string with value
-                        console.log(`Invoice Number: ${invoiceNum}`);
+                        _________________________________________________________
+                        // ES6 will automatically convert this into `strict mode`
+                        // Although we have not use it
+                        projectId = 99;
+
+                        console.log('Hello World, from a module!');
 
                         _________________________________________________________
 
-                        let invoiceNum = '1350';
+                        1. File base.js
+                        ____________
 
-                        // Because of the escape '\' no interpolation takes place
-                        console.log(`Invoice Number: \${invoiceNum}`);
+                        import {projectId} from 'module1';
+                        console.log(projectId);
 
-                        _________________________________________________________
+                        2. File module0.js
+                        ____________
 
-                        let message = `A
-                        B
-                        C`;
-
-                        console.log(message);
+                        export let projectId = 99;
 
                         _________________________________________________________
 
-                        let invoiceNum = '1350';
+                        1. File base.js
+                        ____________
 
-                        console.log(`Invoice Number: ${"INV-" + invoiceNum}`);
+                        import {projectId1, projectName1} from 'module0a';
+                        console.log(`${projectName1} has id: ${projectId1}`);
 
-                        _________________________________________________________
+                        2. File module0a.js
+                        ____________
 
-                        function showMessage(message) {
-                            let invoiceNum = '1350';
-                            console.log(message);
-                        }
-
-                        let invoiceNum = '1350';
-
-                        // Interpolation happens first before the function call
-                        // so the output will be 1350
-                        showMessage(`Invoice Number: ${invoiceNum}`);
+                        export let projectId1 = 99;
+                        export let projectName1 = 'BuiltIt';
 
                         _________________________________________________________
 
-                        function processInvoice(segments) {
-                            console.log(segments);
-                        }
 
-                        processInvoice `template`;
-
-                        _________________________________________________________
-
-                        function processInvoices(segments, ...values) {
-                            console.log(segments);
-                            console.log(values);
-                        }
-
-                        let invoiceNum = '1350';
-                        let amount = '2000';
-
-                        processInvoice `Invoice: ${invoiceNum} for ${amount}`;
-
-                        _________________________________________________________
                     </code>
                 </pre>
                 <pre id="block1" class="dark-bg"></pre>
             </section>
+
 
             <div class="page-link-footer"></div>
         </div>
@@ -128,13 +108,13 @@
         *******************************************
         -->
 
-        <script src="js/script.3.9.js"></script>
+        <script>
+            System.import('js/base.js');
+        </script>
         <script>
             var content = {
-                prevSection: '3.8',
-                prevTitle: 'Octal and Binary Literals',
-                nextSection: '3.10',
-                nextTitle: 'Destructing'
+                nextSection: '4.3',
+                nextTitle: 'Names Exports in Modules'
             };
             addLinks(content);
         </script>
