@@ -27,19 +27,22 @@ function addLinks(OPTIONS) {
             directory = '03-let,const,block-scoping';
             break;
         case 4:
-            directory = '04-new-types-and-object-extensions';
+            directory = '04-es6-modules-and-classes';
             break;
         case 5:
-            directory = '05-iterators-generators-and-promises';
+            directory = '05-new-types-and-objects-extensions';
             break;
         case 6:
-            directory = '06-arrays-and-collections';
+            directory = '06-iterators-generators-and-promises';
             break;
         case 7:
-            directory = '07-the-reflect-api';
+            directory = '07-arrays-and-collections';
             break;
         case 8:
-            directory = '08-the-proxy-api';
+            directory = '08-the-reflect-api';
+            break;
+        case 9:
+            directory = '09-the-proxy-api';
             break;
     }
     
@@ -97,4 +100,3 @@ function footerScript() {
     scriptString += '<script src="../js/prism.js"></script>';
     document.write(scriptString);
 }
-
