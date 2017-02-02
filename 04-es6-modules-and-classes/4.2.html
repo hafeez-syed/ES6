@@ -76,10 +76,119 @@
 
                         _________________________________________________________
 
+                        <h2>Module sequence</h2>
+
+                        1. File base.js
+                        ____________
+
+                        // log from loaded module i.e module_loading_sequence.js will be displayed
+                        // first, and then the rest of the console logs, because import statements
+                        // gets Hoisted.
+                        console.log('starting base.js');
+                        import {PI} from 'js/module_loading_sequence.js';
+                        console.log('ending base.js');
+                        console.log('check above the Hoisted module import log');
+
+                        2. File module_loading_sequence.js
+                        ____________
+
+                        export const PI = 3.14;
+                        console.log('Hello from a hoisted "module loading sequence.js" with PI value:' + PI);
+
+                        _________________________________________________________
+
+                        <h2>default</h2>
+
+                        1. File base.js
+                        ____________
+
+                        // notice, we have exported name as `default` in 'default.js'
+                        // and, imported `myName` instead of `{name}` in 'base.js'.
+                        // When exporting default we can use custom alias (with no curly braces) ]
+                        import myName from 'js/default.js';
+                        console.log('my name is ' + myName);
+
+                        OR
+
+                        // We can also use `{default as customVariable}`
+                        import {default as myFullName} from 'js/default.js';
+                        console.log('My Full name is ' + myFullName);
+
+
+                        2. File default.js
+                        ____________
+
+                        export const PI = 3.14;
+                        let name = 'Hafeez Syed';
+
+                        export default name;
+                        _________________________________________________________
+
+                        <h2>ambiguous or undefined</h2>
+
+                        1. File base.js
+                        ____________
+
+                        // since there is no `default` value exported from 'ambiguous.js'
+                        // someValue will be confused and display `undefined`
+                        import someValue from 'js/ambiguous.js';
+                        console.log('someValue is ' + someValue, divId);
+
+
+                        2. File ambiguous.js
+                        ____________
+
+                        let firstName = 'Hafeez';
+                        let lastName = 'Syed';
+
+                        export {firstName, lastName};
+                        _________________________________________________________
+
+                        <h2>exporting default</h2>
+
+                        1. File base.js
+                        ____________
+
+                        // since `default` value is provided in 'exporting_default.js'
+                        // name will display `Syed` as it is exported as `default`
+                        import name from 'js/exporting_default.js';
+                        console.log('default name is ' + name, divId);
+
+
+                        2. File exporting_default.js
+                        ____________
+
+                        let firstName = 'Hafeez';
+                        let lastName = 'Syed';
+
+                        export {firstName, lastName as default};
+                        _________________________________________________________
+
+                        <h2>wildcard</h2>
+
+                        1. File base.js
+                        ____________
+
+                        // wildcard `*` with alias `values` will become an object
+                        import * as values from 'js/wildcard.js';
+                        consoleAndDisplayResults('value is ::: ' , divId);
+                        consoleAndDisplayResults(values.email, divId);
+                        consoleAndDisplayResults(values.phone, divId);
+
+
+                        2. File wildcard.js
+                        ____________
+
+                        let email = 'hafeez.syed@domain.com';
+                        let phone = '+61 4 0000 000';
+
+                        export {email, phone};
+                        _________________________________________________________
+
 
                     </code>
                 </pre>
-                <pre id="block1" class="dark-bg"></pre>
+                <pre id="block1" class="dark-bg" data-mobile="no" data-phone="no" data-email="no"></pre>
             </section>
 
 
