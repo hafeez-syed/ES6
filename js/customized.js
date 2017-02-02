@@ -83,20 +83,20 @@ function addLinks(OPTIONS) {
 }
 
 function headerScript() {
-    var scriptString = '<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">';
-    scriptString += '<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css">';
+    var scriptString = '<link rel="stylesheet" href="../js/vendors/bootstrap/dist/css/bootstrap.min.css">';
+    scriptString += '<link rel="stylesheet" href="../js/vendors/bootstrap/dist/css/bootstrap-theme.min.css">';
     scriptString += '<link rel="stylesheet" href="../css/prism.css">';
     scriptString += '<link rel="stylesheet" href="../css/customized.css">';
     document.write(scriptString);
 }
 
 function footerScript() {
-    var scriptString = '<script src="../node_modules/jquery/dist/jquery.min.js"></script>';
-    scriptString += '<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>';
-    scriptString += '<script src="../node_modules/traceur/bin/traceur.js"></script>';
-    scriptString += '<script src="../node_modules/traceur/bin/BrowserSystem.js"></script>';
-    scriptString += '<script src="../node_modules/traceur/src/bootstrap.js"></script>';
-    scriptString += '<script src="../js/es6-module-loader/es6-module-loader-dev.js"></script>';
+    var scriptString = '<script src="../js/vendors/jquery/dist/jquery.min.js"></script>';
+    scriptString += '<script src="../js/vendors/bootstrap/dist/js/bootstrap.min.js"></script>';
+    scriptString += '<script src="../js/vendors/traceur/bin/traceur.js"></script>';
+    scriptString += '<script src="../js/vendors/traceur/bin/BrowserSystem.js"></script>';
+    scriptString += '<script src="../js/vendors/traceur/src/bootstrap.js"></script>';
+    scriptString += '<script src="../js/vendors/es6-module-loader/es6-module-loader-dev.js"></script>';
     scriptString += '<script src="../js/prism.js"></script>';
     document.write(scriptString);
 }
