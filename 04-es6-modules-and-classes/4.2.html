@@ -30,7 +30,7 @@
 
 </head>
 <body>
-        <div class="container" data-chapter="3">
+        <div class="container" data-chapter="4">
             <div class="page-link-header"></div>
             <h1 class="page-header">04.02 - Module Basics</h1>
 
@@ -42,33 +42,33 @@
 
                         _________________________________________________________
                         // ES6 will automatically convert this into `strict mode`
-                        // Although we have not use it
+                        // Although we have not used it
                         projectId = 99;
 
                         console.log('Hello World, from a module!');
 
                         _________________________________________________________
 
-                        1. File base.js
+                        1. File script.4.2.base.js
                         ____________
 
                         import {projectId} from 'module1';
                         console.log(projectId);
 
-                        2. File module0.js
+                        2. File script.4.2.module0.js
                         ____________
 
                         export let projectId = 99;
 
                         _________________________________________________________
 
-                        1. File base.js
+                        1. File script.4.2.base.js
                         ____________
 
                         import {projectId1, projectName1} from 'module0a';
                         console.log(`${projectName1} has id: ${projectId1}`);
 
-                        2. File module0a.js
+                        2. File script.4.2.module0a.js
                         ____________
 
                         export let projectId1 = 99;
@@ -78,7 +78,7 @@
 
                         <h2>Module sequence</h2>
 
-                        1. File base.js
+                        1. File script.4.2.base.js
                         ____________
 
                         // log from loaded module i.e module_loading_sequence.js will be displayed
@@ -89,7 +89,7 @@
                         console.log('ending base.js');
                         console.log('check above the Hoisted module import log');
 
-                        2. File module_loading_sequence.js
+                        2. File script.4.2.module_loading_sequence.js
                         ____________
 
                         export const PI = 3.14;
@@ -99,7 +99,7 @@
 
                         <h2>default</h2>
 
-                        1. File base.js
+                        1. File script.4.2.base.js
                         ____________
 
                         // notice, we have exported name as `default` in 'default.js'
@@ -115,27 +115,27 @@
                         console.log('My Full name is ' + myFullName);
 
 
-                        2. File default.js
+                        2. File script.4.2.default.js
                         ____________
 
                         export const PI = 3.14;
                         let name = 'Hafeez Syed';
 
-                        export default name;
+                        export script.4.2.default name;
                         _________________________________________________________
 
                         <h2>ambiguous or undefined</h2>
 
-                        1. File base.js
+                        1. File script.4.2.base.js
                         ____________
 
-                        // since there is no `default` value exported from 'ambiguous.js'
+                        // since there is no `default` value exported from 'script.4.2.ambiguous.js'
                         // someValue will be confused and display `undefined`
-                        import someValue from 'js/ambiguous.js';
+                        import someValue from 'js/script.4.2.ambiguous.js';
                         console.log('someValue is ' + someValue, divId);
 
 
-                        2. File ambiguous.js
+                        2. File script.4.2.script.4.2.ambiguous.js
                         ____________
 
                         let firstName = 'Hafeez';
@@ -146,7 +146,7 @@
 
                         <h2>exporting default</h2>
 
-                        1. File base.js
+                        1. File script.4.2.base.js
                         ____________
 
                         // since `default` value is provided in 'exporting_default.js'
@@ -155,7 +155,7 @@
                         console.log('default name is ' + name, divId);
 
 
-                        2. File exporting_default.js
+                        2. File script.4.2.exporting_default.js
                         ____________
 
                         let firstName = 'Hafeez';
@@ -166,7 +166,7 @@
 
                         <h2>wildcard</h2>
 
-                        1. File base.js
+                        1. File script.4.2.base.js
                         ____________
 
                         // wildcard `*` with alias `values` will become an object
@@ -176,7 +176,7 @@
                         consoleAndDisplayResults(values.phone, divId);
 
 
-                        2. File wildcard.js
+                        2. File script.4.2.wildcard.js
                         ____________
 
                         let email = 'hafeez.syed@domain.com';
@@ -218,12 +218,12 @@
         -->
 
         <script>
-            System.import('js/base.js');
+            System.import('js/script.4.2.base.js');
         </script>
         <script>
             var content = {
                 nextSection: '4.3',
-                nextTitle: 'Names Exports in Modules'
+                nextTitle: 'Named Exports in Modules'
             };
             addLinks(content);
         </script>
