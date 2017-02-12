@@ -45,7 +45,12 @@ function addLinks(OPTIONS) {
             directory = '09-the-proxy-api';
             break;
     }
-    
+
+    // for remote hosts
+    if(window.location.hostname !== 'localhost' || window.location.hostname !== '127.0.0.1') {
+        directory = 'ES6-Learning/' + directory;
+    }
+
     if(!prevSection) {
         prevDirectory = '../';
         prevTitle = '<<< Goto main';
