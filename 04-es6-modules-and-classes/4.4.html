@@ -40,107 +40,189 @@
                     <code class="language-javascript">
                         _________________________________________________________
 
-                        1. File script.4.3.base.js
+                        1. File script.4.4.base.js
                         ____________
 
-                        // It will throw `Reference error` since
-                        // `projectId` is read-only, we can't change
-                        // `projectId`
-                        import {projectId} from 'script.4.3.module1';
-                        projectId = 8000;
-                        console.log(projectId);
+                        // There is no `class` type in `ES6`
+                        // so it will just output `function` as it
+                        // is same as constructor function in `ES5`
 
-                        2. File script.4.3.module1
+                        import { Task } from 'js/script.4.4.class.js';
+                        console.log(Task);
+                        console.log(typeof Task);
+
+                        2. File script.4.4.class
                         ____________
 
-                        export let projectId = 99;
+                        export class Task {
+
+                        }
 
                         _________________________________________________________
 
-                        1. File script.4.3.base.js
+                        1. File script.4.4.base.js
                         ____________
 
-                        // It will output `99` since the `projectId`
-                        // property of object `project` is mutable
-                        import {project} from 'script.4.3.module1';
-                        project.projectId = 8000;
-                        console.log(project.projectId);
+                        import { Task } from 'js/script.4.4.class.js';
+                        let task = new Task();
+                        console.log(typeof task); // object
 
-                        2. File script.4.3.module1
+                        2. File script.4.4.class
                         ____________
 
-                        export let projectId = 99;
-                        export let project = {
-                            projectId: 99
-                        };
+                        export class Task {
+
+                        }
+
                         _________________________________________________________
 
-                        1. File script.4.3.base.js
+                        1. File script.4.4.base.js
                         ____________
 
-                        // The value of `project2.projectId` has been updated
-                        // from `8000` to `999`
-                        // So when you call the `showProject()` method
-                        // It will output `999` instead of `8000`
-                        import {project2, showProject} from 'script.4.3.module1';
-                        project2.projectId = 999;
-                        showProject();
-                        console.log(project2.projectId);
+                        // We are able to determine the class of an instantiated object using `instanceof`
 
-                        2. File script.4.3.module1
+                        import { Task } from 'js/script.4.4.class.js';
+                        let task = new Task();
+                        console.log(task instanceof Task); // true
+
+                        2. File script.4.4.class
                         ____________
 
-                        export let projectId = 99;
+                        export class Task {
 
-                        export let project = {
-                            projectId: 99
-                        };
-
-                        export let project2 = {
-                            projectId: 8000
-                        };
-
-                        export showProject() {
-                            console.log(project2.projectId);
                         }
+
+                        _________________________________________________________
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        import { Task } from 'js/script.4.4.class.js';
+                        let task = new Task();
+                        task.showId(); // 99
+
+                        2. File script.4.4.class
+                        ____________
+
+                        export class Task {
+                            showId () {
+                                console.log(99);
+                            }
+                        }
+
+                        _________________________________________________________
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        import { Task } from 'js/script.4.4.class.js';
+                        let task = new Task();
+                        console.log(task.showId === Task.prototype.showId); // true
+
+                        2. File script.4.4.class
+                        ____________
+
+                        export class Task {
+                            showId () {
+                                console.log(99);
+                            }
+                        }
+
+                        _________________________________________________________
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // Just by creating a new instance of a `class`,
+                        // `constructor` will be called.
+                        // check above for `console.log` where the task was first instantiated
+
+                        import { Task } from 'js/script.4.4.class.js';
+                        let task = new Task();
+
+                        2. File script.4.4.class
+                        ____________
+
+                        export class Task {
+                            constructor () {
+                                console.log('Hi from Task constructor');
+                            }
+                            showId () {
+                                console.log(99);
+                            }
+                        }
+
                         _________________________________________________________
 
 
-                        1. File script.4.3.base.js
+                        1. File script.4.4.base.js
                         ____________
 
-                        import {showOriginal, updateFunction} from 'js/script.4.3.module1.js';
-                        showOriginal(divId); // will output `in original`
-                        updateFunction(divId); // no output / blank
-                        showOriginal(divId); // will output `in updated`
+                        // `taskId` is a property so it will output `Syntax error`
+                        // Defining properties and static properties
+                        // in such a way is not allowed
 
-                        2. File script.4.3.module1
+                        import { Task } from 'js/script.4.4.class.js';
+                        let task = new Task();
+
+                        2. File script.4.4.class
                         ____________
 
-                        export let projectId = 99;
-
-                        export let project = {
-                            projectId: 99
-                        };
-
-                        export let project2 = {
-                            projectId: 8000
-                        };
-
-                        export showProject() {
-                            console.log(project2.projectId);
+                        export class Task {
+                            let taskId = 9000; -> not allowed
+                            constructor () {
+                                console.log('Hi from Task constructor');
+                            }
+                            showId () {
+                                console.log(99);
+                            }
                         }
 
-                        export function showOriginal(divId) {
-                            console.log('in original');
-                        }
-
-                        export function updateFunction(divId) {
-                            showOriginal = function () {
-                                console.log('in updated');
-                            };
-                        }
                         _________________________________________________________
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // Classes can be assigned to variables
+                        // which can ne instantiated later
+
+                        let newClass = class NewTask {
+                            constructor (divId) {
+                                console.log('Hi from NewTask constructor', divId);
+                            }
+                        };
+
+                        new newClass();
+                        _________________________________________________________
+
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // instantiating `let myTask = new Task()` will output an `error`
+                        // because classes are not hoisted
+
+                        import { Task } from 'js/script.4.4.class.js';
+                        let task = new Task();
+
+                        2. File script.4.4.class
+                        ____________
+
+                        let myTask = new Task(); -> error -> class can't hoisted
+
+                        export class Task {
+                            let taskId = 9000; -> error -> not allowed
+                            constructor () {
+                                console.log('Hi from Task constructor');
+                            }
+                            showId () {
+                                console.log(99);
+                            }
+                        }
+
+                        _________________________________________________________
+
+
 
                     </code>
                 </pre>
@@ -174,7 +256,7 @@
         -->
 
         <script>
-            System.import('js/script.4.3.base.js');
+            System.import('js/script.4.4.base.js');
         </script>
         <script>
             var content = {
