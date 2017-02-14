@@ -18,6 +18,12 @@ consoleAndDisplayResults('\n____________________________________________________
 consoleAndDisplayResults(task.showId === Task.prototype.showId, divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
+consoleAndDisplayResults('Error: Unexpected token', divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+consoleAndDisplayResults('Error: Type error', divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
 let newClass = class NewTask {
     constructor (divId) {
         consoleAndDisplayResults('Hi from NewTask constructor', divId);
@@ -26,3 +32,30 @@ let newClass = class NewTask {
 
 new newClass();
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+let NTask = function () {
+    consoleAndDisplayResults('constructing NTask', divId);
+};
+
+let nTask = {};
+NTask.call(nTask);
+
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+class AnotherTask {
+    constructor () {
+        //consoleAndDisplayResults('constructing AnotherTask', divId);
+    }
+};
+
+let anotherTask = {};
+AnotherTask.call(anotherTask);
+consoleAndDisplayResults('Error: Class constructor cannot be called', divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+function Project() {};
+
+consoleAndDisplayResults(window.Project === Project);

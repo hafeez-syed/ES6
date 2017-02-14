@@ -180,21 +180,6 @@
 
                         _________________________________________________________
 
-                        1. File script.4.4.base.js
-                        ____________
-
-                        // Classes can be assigned to variables
-                        // which can ne instantiated later
-
-                        let newClass = class NewTask {
-                            constructor (divId) {
-                                console.log('Hi from NewTask constructor', divId);
-                            }
-                        };
-
-                        new newClass();
-                        _________________________________________________________
-
 
                         1. File script.4.4.base.js
                         ____________
@@ -222,6 +207,53 @@
 
                         _________________________________________________________
 
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // Classes can be assigned to variables
+                        // which can ne instantiated later
+
+                        let newClass = class NewTask {
+                            constructor (divId) {
+                                console.log('Hi from NewTask constructor', divId);
+                            }
+                        };
+
+                        new newClass();
+
+                        _________________________________________________________
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // Like `ES5` we can pass throught the object to the function call
+                        // which will become `this` inside the function
+
+                        let NTask = function () {
+                            console.log('constructing NTask');
+                        };
+
+                        let nTask = {};
+                        NTask.call(nTask);
+
+                        _________________________________________________________
+
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // We can't call the `call` function in order to use the `this' inside classes
+
+                        class AnotherTask {
+                            constructor () {
+                                //console.log('constructing AnotherTask', divId);
+                            }
+                        };
+
+                        let anotherTask = {};
+                        AnotherTask.call(anotherTask);
+
+                        _________________________________________________________
 
 
                     </code>
