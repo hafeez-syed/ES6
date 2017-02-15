@@ -1,3 +1,9 @@
+(function () {
+    'use strict';
+    
+    
+}) ();
+
 var divId = 'block1';
 
 import { Task } from 'js/script.4.4.class.js';
@@ -56,6 +62,13 @@ consoleAndDisplayResults('Error: Class constructor cannot be called', divId);
 consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
 
 
-function Project() {};
+function Project() {}
 
-consoleAndDisplayResults(window.Project === Project);
+consoleAndDisplayResults(window.Project === Project, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);
+
+
+class Projects {}
+
+consoleAndDisplayResults(window.Projects === Projects, divId);
+consoleAndDisplayResults('\n_________________________________________________________\n\n', divId);

@@ -256,6 +256,30 @@
                         _________________________________________________________
 
 
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // output will be `true` as method `Project` has been defined at the global scope
+
+                        function Project() {}
+
+                        console.log(window.Project === Project); //true
+
+                        _________________________________________________________
+
+
+                        1. File script.4.4.base.js
+                        ____________
+
+                        // output will be `false` as class `Projects` (or any class) does not get attached to the global scope
+
+                        class Projects {}
+
+                        console.log(window.Projects === Projects); //false
+
+                        _________________________________________________________
+
+
                     </code>
                 </pre>
                 <pre id="block1" class="dark-bg" data-mobile="no" data-phone="no" data-email="no"></pre>
@@ -289,6 +313,12 @@
 
         <script>
             System.import('js/script.4.4.base.js');
+
+            class Projects {
+
+            }
+
+            console.log('window.Projects === Projects', window.Projects === Projects);
         </script>
         <script>
             var content = {
