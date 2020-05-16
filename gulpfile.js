@@ -38,11 +38,11 @@ var doUglify = false,
  Project setup vars
  */
 var es6Rapid = {
-        src: 'src',
-        dist: 'dist',
-        tests: 'tests',
-        docs: 'docs'
-    },
+    src: 'src',
+    dist: 'dist',
+    tests: 'tests',
+    docs: 'docs'
+},
     paths = {
         js: {
             filename: 'es6Rapid',
@@ -91,12 +91,6 @@ var es6Rapid = {
         paths.js.src + 'panes/*.js',
         paths.js.src + 'jq/clockin.js'
     ],
-    angularTemplates = [ // Folders of templates to be compiled into JS files
-        'activity',
-        'common',
-        'panes',
-        'events'
-    ],
     jsPackages = [ // Bundles of js files, for example, 'training' takes all js in the training folder and creates es6Rapid-training.js
         'training',
         'newsfeed',
@@ -131,13 +125,13 @@ function handleNotification(message) {
  Tasks
  */
 
-gulp.task('set-deploy-vars', function(){
+gulp.task('set-deploy-vars', function () {
     doUglify = true;
     sourcemaps = false;
 });
 
 //Clean entire dist directory
-gulp.task('deploy-clean', function(cb){
+gulp.task('deploy-clean', function (cb) {
     return del([
         es6Rapid.dist + '/css/**',
         es6Rapid.dist + '/fonts/**',
@@ -146,19 +140,19 @@ gulp.task('deploy-clean', function(cb){
         es6Rapid.dist + '/views/**',
         es6Rapid.dist + '/svg/**',
         es6Rapid.docs + '/**'
-    ], {force: true}, cb);
+    ], { force: true }, cb);
 });
 
-gulp.task('default-clean', function(cb){
+gulp.task('default-clean', function (cb) {
 
     return del([
         es6Rapid.dist + '/app.manifest',
         paths.js.dist + '**'
-    ], {force: true}, cb);
+    ], { force: true }, cb);
 });
 
 // Basic stylus compile
-gulp.task('stylus', function (){
+gulp.task('stylus', function () {
     return gulp.src(paths.css.src + paths.css.srcFilename + '.styl')
         .pipe(plugins.newer(paths.css.dist + paths.css.filename + '.css'))
         .pipe(plugins.sourcemaps.init())
@@ -172,7 +166,7 @@ gulp.task('stylus', function (){
 });
 
 // Deploy stylus files, build all colour variations and apply minifcation and prefixing
-gulp.task('stylus-deploy', function (){
+gulp.task('stylus-deploy', function () {
     return gulp.src(paths.css.src + paths.css.srcFilename + '**')
         .pipe(plugins.stylus())
         .on('error', handleNotification)
@@ -187,14 +181,14 @@ gulp.task('stylus-deploy', function (){
         .pipe(gulp.dest(paths.css.dist));
 });
 
-gulp.task('iconfont', function(){
+gulp.task('iconfont', function () {
     return gulp.src(paths.icons.src + '**/*.svg')
         .pipe(plugins.iconfont({
             fontName: 'es6Rapid',
             normalize: true,
             startCodepoint: 0xE601
         }))
-        .on('codepoints', function(codepoints, options) {
+        .on('codepoints', function (codepoints, options) {
 
             gulp.src(paths.css.src + 'elements/icons-template.tmpl')
                 .pipe(plugins.consolidate('lodash', {
@@ -254,69 +248,53 @@ gulp.task('image-compression', function () {
 // Streams shared amongst JS tasks
 function buildJSConcat(fileNameSuffix, runJSHint, doUglify, sourcemaps) {
     return lazypipe()
-        .pipe(function() {
+        .pipe(function () {
             return plugins.if(sourcemaps, plugins.sourcemaps.init());
         })
         .pipe(plugins.newer, paths.js.dist + paths.js.filename + fileNameSuffix + '.js')
-        .pipe(function() { // Unfortunately we can't use just one if statement hence the messy code
+        .pipe(function () { // Unfortunately we can't use just one if statement hence the messy code
             return plugins.if(runJSHint, plugins.jshint('.jshintrc'));
         })
-        .pipe(function() {
+        .pipe(function () {
             return plugins.if(runJSHint, plugins.jshint.reporter(stylish));
         })
         /*.pipe(function() {
          return plugins.if(runJSHint, plugins.jshint.reporter('fail')); // Make the task fail if it has errors, currently breaks watch
          })*/
         .pipe(plugins.concat, paths.js.filename + fileNameSuffix + '.js')
-        .pipe(plugins.ngAnnotate) // Prevent angular from being mangled during minifcation
-        .pipe(function() {
-            return plugins.if(doUglify, plugins.uglify({preserveComments: 'some'}));
+        .pipe(function () {
+            return plugins.if(doUglify, plugins.uglify({ preserveComments: 'some' }));
         })
-        .pipe(function() {
+        .pipe(function () {
             return plugins.if(sourcemaps, plugins.sourcemaps.write('./'));
         })
-        .pipe(function() {
+        .pipe(function () {
             return plugins.if(!runJSHint, gulp.dest(paths.js.dist));
         })
 }
 
 function buildJSSingle(fileFolder, sourcemaps, doUglify) {
     return lazypipe()
-        .pipe(function() {
+        .pipe(function () {
             return plugins.if(sourcemaps, plugins.sourcemaps.init());
         })
         .pipe(plugins.newer, paths.js.dist + fileFolder + '/')
-        .pipe(function() {
-            return plugins.if(doUglify, plugins.uglify({preserveComments: 'some'}));
+        .pipe(function () {
+            return plugins.if(doUglify, plugins.uglify({ preserveComments: 'some' }));
         })
-        .pipe(function() {
+        .pipe(function () {
             return plugins.if(sourcemaps, plugins.sourcemaps.write('./'));
         })
         .pipe(gulp.dest, paths.js.dist + fileFolder + '/');
 }
 
-gulp.task('build-js', function(){
+gulp.task('build-js', function () {
 
     var lib = gulp.src([
-        paths.bower.src + 'angular/angular.js',
-        paths.bower.src + 'angular-animate/angular-animate.js',
-        paths.bower.src + 'angular-cache/dist/angular-cache.js',
-        paths.bower.src + 'angular-resource/angular-resource.js',
-        paths.bower.src + 'angular-cookies/angular-cookies.js',
-        paths.bower.src + 'angular-route/angular-route.js',
-        paths.bower.src + 'angular-cookies/angular-cookies.js',
-        'node_modules/angular-sanitize/angular-sanitize.js', //Old versions removed from bower repo :(
-        paths.bower.src + 'angular-load/angular-load.js',
-        paths.bower.src + 'ng-sortable/dist/ng-sortable.js',
         //paths.bower.src + 'moment/moment.js',
-        'node_modules/angular-moment/node_modules/moment/moment.js',
         paths.bower.src + 'moment-timezone/moment-timezone.js',
         paths.bower.src + 'Sortable/Sortable.js',
-        paths.bower.src + 'textAngular/src/textAngular.js',
-        paths.bower.src + 'ng-material-floating-button/src/mfb-directive.js',
         paths.bower.src + 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.js',
-        paths.bower.src + 'ng-scrollbars/src/scrollbars.js',
-        'node_modules/angular-moment/angular-moment.js',
 
         paths.js.src + 'lib/*.js' // This is anything we don't manage with Bower
     ]).pipe(buildJSConcat('-lib', false, doUglify, sourcemaps)()); // Don't process these files with jshint
@@ -352,7 +330,7 @@ gulp.task('build-js', function(){
 
 function getFoldersWithPartials(dir) {
     return fs.readdirSync(dir)
-        .filter(function(file) {
+        .filter(function (file) {
             // existsSync has been deprecated.  If it is removed, have a look into is-there instead.
             // is there was not working correctly at the time this was written which is why it wasn't used in the first place.
             // https://github.com/IonicaBizau/node-is-there
@@ -364,15 +342,10 @@ function getFoldersWithPartials(dir) {
 
 function createNGTemplates(templateFolder) {
     return lazypipe()
-        .pipe(plugins.angularTemplatecache, {
-            filename: 'z_ng-templates-combined.js',
-            module: 'es6Rapid',
-            root:  '/interface/views/' + templateFolder + '/partials/'
-        })
         .pipe(gulp.dest, paths.js.src + templateFolder);
 }
 
-gulp.task('create-ng-templates', function(){
+gulp.task('create-ng-templates', function () {
 
     var streams = [];
     var foldersWithPartials = getFoldersWithPartials(paths.js.src);
@@ -384,12 +357,12 @@ gulp.task('create-ng-templates', function(){
     return merge(streams);
 });
 
-gulp.task('clean-ng-templates', function(cb){
+gulp.task('clean-ng-templates', function (cb) {
 
-    return del(paths.js.src + '**/*ng-templates-combined.js', {force: false}, cb);
+    return del(paths.js.src + '**/*ng-templates-combined.js', { force: false }, cb);
 });
 
-gulp.task('views-copy', function(){
+gulp.task('views-copy', function () {
 
     return gulp.src(paths.js.src + '**/templates/**/*')
         .pipe(plugins.rename(function (path) {
@@ -398,7 +371,7 @@ gulp.task('views-copy', function(){
         .pipe(gulp.dest(paths.views.dist));
 });
 
-gulp.task('views-copy-deploy', function(){
+gulp.task('views-copy-deploy', function () {
 
     // Return only the base level views and not the partials and also the form json structures
     return gulp.src([
@@ -410,19 +383,19 @@ gulp.task('views-copy-deploy', function(){
         .pipe(gulp.dest(paths.views.dist));
 });
 
-gulp.task('images-copy', function(){
+gulp.task('images-copy', function () {
 
     return gulp.src(paths.images.src + '**/*')
         .pipe(gulp.dest(paths.images.dist));
 });
 
-gulp.task('fonts-copy', function(){
+gulp.task('fonts-copy', function () {
 
     return gulp.src(paths.fonts.src + '**/*')
         .pipe(gulp.dest(paths.fonts.dist));
 });
 
-gulp.task('svg-sprite-copy', function(){
+gulp.task('svg-sprite-copy', function () {
 
     return gulp.src(paths.svg.src + 'sprite.svg')
         .pipe(plugins.svgmin())
@@ -430,7 +403,7 @@ gulp.task('svg-sprite-copy', function(){
 });
 
 // Creation of a cache manifest file
-gulp.task('create-manifest', function(){
+gulp.task('create-manifest', function () {
 
     gulp.src([
         es6Rapid.dist + '/**',
@@ -450,7 +423,7 @@ gulp.task('create-manifest', function(){
         .pipe(gulp.dest(es6Rapid.dist));
 });
 
-gulp.task('docs-copy-old', function(){
+gulp.task('docs-copy-old', function () {
 
     var images = gulp.src(paths.images.src + '**').pipe(gulp.dest('docs-old/interface/images'));
     var fonts = gulp.src(paths.fonts.dist + '**').pipe(gulp.dest('docs-old/interface/fonts'));
@@ -460,7 +433,7 @@ gulp.task('docs-copy-old', function(){
 
     var views = gulp.src(paths.js.src + '**/templates/**')
         .pipe(plugins.rename(function (path) {
-            path.dirname  = path.dirname.replace('\\templates', '');
+            path.dirname = path.dirname.replace('\\templates', '');
         }))
         .pipe(gulp.dest('docs-old/interface/views'));
 
@@ -469,27 +442,27 @@ gulp.task('docs-copy-old', function(){
 });
 
 // Start the old docs server
-gulp.task('docs-server-old', ['docs-copy-old'], function() {
+gulp.task('docs-server-old', ['docs-copy-old'], function () {
     plugins.connect.server({
         root: 'docs-old',
         port: 3001
     });
     gulp.src('./index.html')
-        .pipe(plugins.open("", {app: "chrome", url: "http://localhost:3001"}));
+        .pipe(plugins.open("", { app: "chrome", url: "http://localhost:3001" }));
 });
 
 // gulp
-gulp.task('docs-clean', function(){
+gulp.task('docs-clean', function () {
     return del(es6Rapid.docs + '/*.html')
 });
 
 // Build our docs from stylus files
 gulp.task('docs-compile', plugins.shell.task([
     'kss-node ../../../src/css ../../../docs --template ../../../docs/_template'
-], {cwd: 'node_modules/kss/bin/'}));
+], { cwd: 'node_modules/kss/bin/' }));
 
 // Copy interface files to docs folder
-gulp.task('docs-copy', function(){
+gulp.task('docs-copy', function () {
 
     var images = gulp.src(paths.images.src + '**').pipe(gulp.dest(es6Rapid.docs + '/interface/images'));
     var fonts = gulp.src(paths.fonts.dist + '**').pipe(gulp.dest(es6Rapid.docs + '/interface/fonts'));
@@ -499,7 +472,7 @@ gulp.task('docs-copy', function(){
 
     var views = gulp.src(paths.js.src + '**/templates/**')
         .pipe(plugins.rename(function (path) {
-            path.dirname  = path.dirname.replace('\\templates', '');
+            path.dirname = path.dirname.replace('\\templates', '');
         }))
         .pipe(gulp.dest(es6Rapid.docs + '/interface/views'));
 
@@ -508,25 +481,25 @@ gulp.task('docs-copy', function(){
 });
 
 // Start the docs server
-gulp.task('docs-server', function() {
+gulp.task('docs-server', function () {
     plugins.connect.server({
         root: es6Rapid.docs,
         port: 3000
     });
     gulp.src('./index.html')
-        .pipe(plugins.open("", {app: "chrome", url: "http://localhost:3000"}));
+        .pipe(plugins.open("", { app: "chrome", url: "http://localhost:3000" }));
 });
 
-gulp.task('docs-rebuild', function(){
+gulp.task('docs-rebuild', function () {
     return runSequence('docs-compile', 'docs-copy');
 })
 
-gulp.task('docs-start', function(){
+gulp.task('docs-start', function () {
     return runSequence('docs-compile', 'docs-copy', 'docs-server');
 })
 
 // Start browser sync server
-gulp.task('browser-sync', function() {
+gulp.task('browser-sync', function () {
     browserSync({
         proxy: {
             host: 'localhost',
@@ -545,23 +518,23 @@ gulp.task('browser-sync', function() {
 });
 
 // Rerun tasks when src files change
-gulp.task('watch', function(){
+gulp.task('watch', function () {
 
     plugins.livereload.listen(); // Start livereload server
 
-    gulp.watch(paths.css.src + '**/*.styl', function(){
+    gulp.watch(paths.css.src + '**/*.styl', function () {
         runSequence('stylus', 'docs-rebuild');
     });
 
-    gulp.watch(paths.icons.src + '**/*.svg', function(){
+    gulp.watch(paths.icons.src + '**/*.svg', function () {
         runSequence('iconfont');
     });
 
-    gulp.watch(paths.images.src + '**', function(){
+    gulp.watch(paths.images.src + '**', function () {
         runSequence('images-copy', 'docs-copy');
     });
 
-    gulp.watch(paths.svg.src + 'sprite.svg', function(){
+    gulp.watch(paths.svg.src + 'sprite.svg', function () {
         runSequence('svg-sprite-copy', 'docs-copy');
     });
 
@@ -569,7 +542,7 @@ gulp.task('watch', function(){
     gulp.watch([
         paths.bower.src + '**/*.js',
         paths.js.src + '**/*.js'
-    ], function(){
+    ], function () {
         runSequence('build-js', 'docs-copy');
     });
 
@@ -577,12 +550,12 @@ gulp.task('watch', function(){
     gulp.watch([
         paths.js.src + '**/*.html',
         paths.js.src + '**/*.json'
-    ], function(){
+    ], function () {
         runSequence('views-copy', 'docs-copy');
     });
 
     // Docs
-    gulp.watch(es6Rapid.docs + '/_template/**', function(){
+    gulp.watch(es6Rapid.docs + '/_template/**', function () {
         runSequence('stylus', 'docs-rebuild');
     });
 
@@ -596,8 +569,8 @@ gulp.task('watch', function(){
         paths.images.dist + '**',
         paths.views.interfaceTemplates + '**',
         es6Rapid.docs + '**/*.js'
-    ]).on('change', function(file) {
-        setTimeout(function(){ // Allow time for the copy task to finish
+    ]).on('change', function (file) {
+        setTimeout(function () { // Allow time for the copy task to finish
             plugins.livereload.changed(file);
             browserSync.reload();
         }, 1000);
@@ -608,7 +581,7 @@ gulp.task('watch', function(){
 
 // When running regular gulp, ignore all files in the interface folder
 // Git ignore only ignores new files so also do a assume unchanaged so that they aren't marked as changed
-gulp.task('add-git-ignore', function(){
+gulp.task('add-git-ignore', function () {
 
     return gulp.src(es6Rapid.dist)
         .pipe(plugins.file('.gitignore', '*'))
@@ -617,20 +590,20 @@ gulp.task('add-git-ignore', function(){
 
 gulp.task('ignore-interface-files', ['add-git-ignore'], plugins.shell.task([
     'git ls-files -z | xargs -0 git update-index --assume-unchanged'
-], {cwd: '../interface'}));
+], { cwd: '../interface' }));
 
 // Reverse the git ignore
-gulp.task('remove-git-ignore', function(){
-    return del(es6Rapid.dist + '/.gitignore', {force: true});
+gulp.task('remove-git-ignore', function () {
+    return del(es6Rapid.dist + '/.gitignore', { force: true });
 });
 
 gulp.task('unignore-interface-files', ['remove-git-ignore'], plugins.shell.task([
     'git ls-files -z | xargs -0 git update-index --no-assume-unchanged'
-], {cwd: '../interface'}));
+], { cwd: '../interface' }));
 
 gulp.task('start-storage-emulator', plugins.shell.task([
     'csrun.exe /devstore:start'
-], {cwd: 'C:\\Program Files\\Microsoft SDKs\\Azure\\Emulator\\'}));
+], { cwd: 'C:\\Program Files\\Microsoft SDKs\\Azure\\Emulator\\' }));
 
 // Perform a single run of the unit tests
 gulp.task('run-unit-tests', plugins.shell.task([
@@ -638,8 +611,8 @@ gulp.task('run-unit-tests', plugins.shell.task([
 ]));
 
 // Run a bower update
-gulp.task('bower-update', function() {
-    return plugins.bower({ cmd: 'update'});
+gulp.task('bower-update', function () {
+    return plugins.bower({ cmd: 'update' });
 });
 
 /*
@@ -649,7 +622,7 @@ gulp.task('bower-update', function() {
 function buildUITests(filenames, bundleName) {
     var files = [];
     files.push(paths.test.visual + '_partials/header.js');
-    filenames.forEach(function(item){
+    filenames.forEach(function (item) {
         files.push(paths.test.visual + '_partials/' + item + '.js');
     });
     files.push(paths.test.visual + '_partials/footer.js');
@@ -658,7 +631,7 @@ function buildUITests(filenames, bundleName) {
         .pipe(gulp.dest(paths.test.visual));
 }
 
-gulp.task('build-ui-tests', function(){
+gulp.task('build-ui-tests', function () {
 
     var dashboard = buildUITests(['dashboard'], 'dashboard');
     var latestNews = buildUITests(['latest-news'], 'latest-news');
@@ -669,41 +642,41 @@ gulp.task('build-ui-tests', function(){
     return merge(dashboard, latestNews, directory, training, all);
 });
 
-gulp.task('run-ui-tests', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../all.js'], {cwd: 'test/visual/PhantomCSS'}));
-gulp.task('run-ui-test-dashboard', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../dashboard.js'], {cwd: 'test/visual/PhantomCSS'}));
-gulp.task('run-ui-test-latest-news', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../latest-news.js'], {cwd: 'test/visual/PhantomCSS'}));
-gulp.task('run-ui-test-directory', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../directory.js'], {cwd: 'test/visual/PhantomCSS'}));
-gulp.task('run-ui-test-training', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../training.js'], {cwd: 'test/visual/PhantomCSS'}));
+gulp.task('run-ui-tests', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../all.js'], { cwd: 'test/visual/PhantomCSS' }));
+gulp.task('run-ui-test-dashboard', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../dashboard.js'], { cwd: 'test/visual/PhantomCSS' }));
+gulp.task('run-ui-test-latest-news', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../latest-news.js'], { cwd: 'test/visual/PhantomCSS' }));
+gulp.task('run-ui-test-directory', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../directory.js'], { cwd: 'test/visual/PhantomCSS' }));
+gulp.task('run-ui-test-training', ['build-ui-tests'], plugins.shell.task(['casperjs.bat test ../training.js'], { cwd: 'test/visual/PhantomCSS' }));
 
 /*
  *  Primary gulp tasks
  */
 
 // Default Gulp task
-gulp.task('default', function(){
+gulp.task('default', function () {
     runSequence('default-clean', ['ignore-interface-files', 'build-js', 'stylus', 'views-copy', 'docs-start', 'start-storage-emulator'], 'watch');
 });
 
 // Start a watch with browser-sync enabled
-gulp.task('watch-bs', function(){
+gulp.task('watch-bs', function () {
     runSequence('watch', 'browser-sync');
 });
 
 // Run regular gulp with browser-sync included
-gulp.task('with-bw', ['default'], function(){
+gulp.task('with-bw', ['default'], function () {
     runSequence('browser-sync');
 });
 
 // Deploy gulp task to run when commiting and deploying code
-gulp.task('deploy', ['deploy-clean'], function(){
-    runSequence('set-deploy-vars', 'bower-update', 'iconfont', ['unignore-interface-files', 'stylus-deploy', 'image-compression', 'fonts-copy', 'views-copy-deploy', 'svg-sprite-copy'], 'create-ng-templates', 'build-js', 'clean-ng-templates','docs-copy', 'create-manifest', 'notify-deploy');
-});
-
-// Same as the gulp deploy task but doesn't run unit tests or do any git ignore / unignore changes.  Use this task on the build server
-gulp.task('build', ['deploy-clean'], function(){
+gulp.task('deploy', ['deploy-clean'], function () {
     runSequence('set-deploy-vars', 'bower-update', 'iconfont', ['unignore-interface-files', 'stylus-deploy', 'image-compression', 'fonts-copy', 'views-copy-deploy', 'svg-sprite-copy'], 'create-ng-templates', 'build-js', 'clean-ng-templates', 'docs-copy', 'create-manifest', 'notify-deploy');
 });
 
-gulp.task('notify-deploy', function(){
+// Same as the gulp deploy task but doesn't run unit tests or do any git ignore / unignore changes.  Use this task on the build server
+gulp.task('build', ['deploy-clean'], function () {
+    runSequence('set-deploy-vars', 'bower-update', 'iconfont', ['unignore-interface-files', 'stylus-deploy', 'image-compression', 'fonts-copy', 'views-copy-deploy', 'svg-sprite-copy'], 'create-ng-templates', 'build-js', 'clean-ng-templates', 'docs-copy', 'create-manifest', 'notify-deploy');
+});
+
+gulp.task('notify-deploy', function () {
     handleNotification('Gulp deploy is complete');
 });
